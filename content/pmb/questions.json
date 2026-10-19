@@ -1,0 +1,877 @@
+[
+  {
+    "ch": 1,
+    "type": "tf",
+    "q": "In the Business in Context model, business activities are shaped by their contexts but have no influence on them.",
+    "a": false,
+    "why": "The model stresses two-way interaction: contexts shape activities and activities shape contexts."
+  },
+  {
+    "ch": 1,
+    "type": "mcq",
+    "q": "Which of these is NOT one of the five business activities in the model?",
+    "o": [
+      "Innovation",
+      "Operations",
+      "Logistics",
+      "Marketing"
+    ],
+    "a": 2,
+    "why": "The five are innovation, operations, marketing, HRM, and finance and accounting."
+  },
+  {
+    "ch": 1,
+    "type": "gap",
+    "q": "The ____ approach views business as inputs from the environment, internal processes and outputs.",
+    "acc": [
+      "systems",
+      "system"
+    ],
+    "why": "This is the systems approach."
+  },
+  {
+    "ch": 1,
+    "type": "mcq",
+    "q": "According to the contingency approach, the most successful businesses are those that…",
+    "o": [
+      "follow one universal set of best practices",
+      "are organized to take advantage of their environment",
+      "grow as large as possible",
+      "avoid contact with the state"
+    ],
+    "a": 1,
+    "why": "Contingency theory says there is no single best way; fit with the environment matters."
+  },
+  {
+    "ch": 1,
+    "type": "tf",
+    "q": "The book treats schools, hospitals and charities as businesses.",
+    "a": true,
+    "why": "Business is defined broadly to include not-for-profit organizations."
+  },
+  {
+    "ch": 1,
+    "type": "mcq",
+    "q": "Which three levels of context surround business activities in the model?",
+    "o": [
+      "Local, national, international",
+      "Strategic, organizational, environmental",
+      "Political, economic, social",
+      "Input, process, output"
+    ],
+    "a": 1,
+    "why": "Strategic, organizational and environmental, all set within globalization."
+  },
+  {
+    "ch": 2,
+    "type": "tf",
+    "q": "The growth of globalization has been steady and uninterrupted since the 19th century.",
+    "a": false,
+    "why": "There was a marked slowdown between 1914 and 1950, and again early in the 21st century."
+  },
+  {
+    "ch": 2,
+    "type": "mcq",
+    "q": "Which perspective emphasizes the uneven distribution of benefits, the power of big business and environmental damage?",
+    "o": [
+      "Globalist",
+      "Anti-globalization",
+      "Sceptical",
+      "Transnational"
+    ],
+    "a": 1,
+    "why": "These are the core criticisms of the anti-globalization lobby."
+  },
+  {
+    "ch": 2,
+    "type": "gap",
+    "q": "Splitting a production process across firms in different countries is known as the global ____.",
+    "acc": [
+      "factory"
+    ],
+    "why": "The global factory disaggregates production, mainly to reduce costs."
+  },
+  {
+    "ch": 2,
+    "type": "mcq",
+    "q": "Compared with a traditional MNE, a transnational corporation's primary objectives are…",
+    "o": [
+      "control and cost",
+      "flexibility, responsiveness and innovation",
+      "exporting from the home country",
+      "avoiding joint ventures"
+    ],
+    "a": 1,
+    "why": "In a TNC, flexibility, responsiveness and innovation replace control and cost."
+  },
+  {
+    "ch": 2,
+    "type": "tf",
+    "q": "Joint ventures usually involve some element of shared ownership.",
+    "a": true,
+    "why": "For example, two firms setting up a new company together."
+  },
+  {
+    "ch": 2,
+    "type": "mcq",
+    "q": "Which development has driven the rapid growth of globalization since about 1980?",
+    "o": [
+      "The gold standard",
+      "ICT",
+      "The 1914–1950 trade slowdown",
+      "Rising tariffs"
+    ],
+    "a": 1,
+    "why": "Information and communications technology accelerated globalization."
+  },
+  {
+    "ch": 3,
+    "type": "mcq",
+    "q": "What does PEST stand for?",
+    "o": [
+      "Price, economy, society, trade",
+      "Political, economic, social, technological",
+      "Planning, execution, strategy, tactics",
+      "Political, environmental, structural, technical"
+    ],
+    "a": 1,
+    "why": "PEST: political, economic, social and technological factors."
+  },
+  {
+    "ch": 3,
+    "type": "tf",
+    "q": "In the book's definition, the state includes the judiciary, civil service, armed forces and police.",
+    "a": true,
+    "why": "The state is broader than the government alone."
+  },
+  {
+    "ch": 3,
+    "type": "gap",
+    "q": "The WTO emerged from the ____.",
+    "acc": [
+      "gatt",
+      "general agreement on tariffs and trade"
+    ],
+    "why": "The GATT was replaced by the WTO."
+  },
+  {
+    "ch": 3,
+    "type": "mcq",
+    "q": "Which three broad groups of market economies does the book identify?",
+    "o": [
+      "Anglo-Saxon, social market, Asian",
+      "Communist, socialist, capitalist",
+      "Developed, emerging, frontier",
+      "EU, NAFTA, ASEAN"
+    ],
+    "a": 0,
+    "why": "Anglo-Saxon, social market and Asian models."
+  },
+  {
+    "ch": 3,
+    "type": "tf",
+    "q": "Predictions discussed in the book indicate India will be the world's largest economy by 2040.",
+    "a": false,
+    "why": "The predictions point to China."
+  },
+  {
+    "ch": 3,
+    "type": "mcq",
+    "q": "GDP per capita is calculated by…",
+    "o": [
+      "dividing GDP by the population",
+      "adding exports to GDP",
+      "subtracting imports from GNP",
+      "dividing GNP by the number of firms"
+    ],
+    "a": 0,
+    "why": "Per capita means per head of population."
+  },
+  {
+    "ch": 4,
+    "type": "tf",
+    "q": "The book argues that technology simply determines how businesses operate, leaving managers no choice.",
+    "a": false,
+    "why": "Technology is both a determinant and a product of management choice."
+  },
+  {
+    "ch": 4,
+    "type": "gap",
+    "q": "Work on self-employed contracts with no guaranteed hours is called the ____ economy.",
+    "acc": [
+      "gig"
+    ],
+    "why": "The gig economy has grown in many countries."
+  },
+  {
+    "ch": 4,
+    "type": "mcq",
+    "q": "Where has the impact of e-commerce been greatest?",
+    "o": [
+      "B2C",
+      "B2B",
+      "Government services",
+      "Charities"
+    ],
+    "a": 1,
+    "why": "Business-to-business transactions."
+  },
+  {
+    "ch": 4,
+    "type": "tf",
+    "q": "Trade union membership has increased in most countries.",
+    "a": false,
+    "why": "Membership and influence have declined in most countries."
+  },
+  {
+    "ch": 4,
+    "type": "mcq",
+    "q": "Labour mobility in the sense of people moving to another country…",
+    "o": [
+      "has grown faster than trade",
+      "remains low",
+      "is the main driver of globalization",
+      "was ended by COVID-19"
+    ],
+    "a": 1,
+    "why": "Jobs move around the world more than people do."
+  },
+  {
+    "ch": 4,
+    "type": "mcq",
+    "q": "What was the main effect of the COVID-19 pandemic on technology and work?",
+    "o": [
+      "It reversed digitalization",
+      "It accelerated existing trends",
+      "It had no effect",
+      "It ended remote work"
+    ],
+    "a": 1,
+    "why": "Much of the change was an acceleration of existing trends."
+  },
+  {
+    "ch": 5,
+    "type": "mcq",
+    "q": "The primary drivers of convergence are…",
+    "o": [
+      "trade unions and the state",
+      "technology transfer and multinational firms",
+      "religion and language",
+      "small firms and charities"
+    ],
+    "a": 1,
+    "why": "Technology transfer and the activities of multinationals."
+  },
+  {
+    "ch": 5,
+    "type": "tf",
+    "q": "In Hofstede's survey, the USA had the highest individualism rating of any country.",
+    "a": true,
+    "why": "The USA scored highest on individualism."
+  },
+  {
+    "ch": 5,
+    "type": "gap",
+    "q": "Hofstede's dimension measuring discomfort with ambiguity is uncertainty ____.",
+    "acc": [
+      "avoidance"
+    ],
+    "why": "Uncertainty avoidance."
+  },
+  {
+    "ch": 5,
+    "type": "mcq",
+    "q": "In Anglo-Saxon capitalism, the main stakeholders are seen as…",
+    "o": [
+      "employees",
+      "the state",
+      "shareholders",
+      "banks"
+    ],
+    "a": 2,
+    "why": "Shareholders are the main stakeholders in the liberal market model."
+  },
+  {
+    "ch": 5,
+    "type": "mcq",
+    "q": "The varieties of capitalism approach contrasts…",
+    "o": [
+      "liberal and coordinated market economies",
+      "East and West",
+      "manufacturing and services",
+      "public and private sectors"
+    ],
+    "a": 0,
+    "why": "Liberal market economies versus coordinated market economies."
+  },
+  {
+    "ch": 5,
+    "type": "tf",
+    "q": "The national business systems model is associated with Whitley.",
+    "a": true,
+    "why": "Whitley's model explains differences in business systems between countries."
+  },
+  {
+    "ch": 6,
+    "type": "mcq",
+    "q": "Which is NOT one of the organizational elements in the model?",
+    "o": [
+      "Goals",
+      "Structure",
+      "Pricing",
+      "Ownership"
+    ],
+    "a": 2,
+    "why": "The elements are goals, structure, ownership, size and culture."
+  },
+  {
+    "ch": 6,
+    "type": "gap",
+    "q": "In the agency problem, managers are the ____ of shareholders.",
+    "acc": [
+      "agents",
+      "agent"
+    ],
+    "why": "Shareholders are principals; managers are their agents."
+  },
+  {
+    "ch": 6,
+    "type": "tf",
+    "q": "The evidence linking organization structure to performance is conclusive.",
+    "a": false,
+    "why": "The book says the evidence is inconclusive."
+  },
+  {
+    "ch": 6,
+    "type": "mcq",
+    "q": "In a multidivisional company, business units…",
+    "o": [
+      "have no headquarters",
+      "operate as profit centres coordinated by a corporate HQ",
+      "must all do the same activity",
+      "are owned by different shareholders"
+    ],
+    "a": 1,
+    "why": "Profit centres coordinated centrally."
+  },
+  {
+    "ch": 6,
+    "type": "tf",
+    "q": "The book defines corporate culture as a culture deliberately created by management for strategic ends.",
+    "a": true,
+    "why": "Organizational culture grows naturally; corporate culture is designed by management."
+  },
+  {
+    "ch": 6,
+    "type": "mcq",
+    "q": "Privatization was especially prevalent in the UK during…",
+    "o": [
+      "the 1940s and 1950s",
+      "the 1960s and 1970s",
+      "the 1980s and 1990s",
+      "the 2010s"
+    ],
+    "a": 2,
+    "why": "Driven by belief in free markets in the 1980s and 1990s."
+  },
+  {
+    "ch": 7,
+    "type": "mcq",
+    "q": "A common short definition of management is…",
+    "o": [
+      "inspiring people to exceed expectations",
+      "getting things done through other people",
+      "owning the business",
+      "designing products"
+    ],
+    "a": 1,
+    "why": "Management is getting things done through other people."
+  },
+  {
+    "ch": 7,
+    "type": "tf",
+    "q": "Leadership focuses on coordination, while management focuses on inspiring people.",
+    "a": false,
+    "why": "It's the other way round."
+  },
+  {
+    "ch": 7,
+    "type": "mcq",
+    "q": "Which French writer is associated with the classical principles of management?",
+    "o": [
+      "Weber",
+      "Fayol",
+      "Taylor",
+      "Mintzberg"
+    ],
+    "a": 1,
+    "why": "Henri Fayol."
+  },
+  {
+    "ch": 7,
+    "type": "gap",
+    "q": "Studying five senior executives, ____ identified ten managerial roles in three categories.",
+    "acc": [
+      "mintzberg",
+      "henry mintzberg"
+    ],
+    "why": "Mintzberg (1973): interpersonal, informational and decisional roles."
+  },
+  {
+    "ch": 7,
+    "type": "tf",
+    "q": "The chapter concludes that management and leadership are best viewed within their organizational and environmental context.",
+    "a": true,
+    "why": "This follows the Business in Context model."
+  },
+  {
+    "ch": 7,
+    "type": "mcq",
+    "q": "A manager's legitimacy is based on…",
+    "o": [
+      "age only",
+      "property rights, laws, power and values",
+      "popularity with employees",
+      "technical skill only"
+    ],
+    "a": 1,
+    "why": "Several sources together give managers their right to manage."
+  },
+  {
+    "ch": 8,
+    "type": "gap",
+    "q": "SWOT stands for strengths, weaknesses, opportunities and ____.",
+    "acc": [
+      "threats",
+      "threat"
+    ],
+    "why": "Threats."
+  },
+  {
+    "ch": 8,
+    "type": "mcq",
+    "q": "Porter's value chain divides activities into…",
+    "o": [
+      "primary and support",
+      "fixed and variable",
+      "internal and external",
+      "core and peripheral"
+    ],
+    "a": 0,
+    "why": "Primary and support activities."
+  },
+  {
+    "ch": 8,
+    "type": "mcq",
+    "q": "In the BCG matrix, a product with high market share in a low-growth market is a…",
+    "o": [
+      "star",
+      "question mark",
+      "cash cow",
+      "dog"
+    ],
+    "a": 2,
+    "why": "Cash cows fund question marks and stars."
+  },
+  {
+    "ch": 8,
+    "type": "tf",
+    "q": "Backward integration means gaining control of distribution and retailing.",
+    "a": false,
+    "why": "That is forward integration; backward means moving towards suppliers."
+  },
+  {
+    "ch": 8,
+    "type": "mcq",
+    "q": "Strategic options should be assessed on…",
+    "o": [
+      "suitability, feasibility and acceptability",
+      "price, place and product",
+      "size, speed and scope",
+      "cost alone"
+    ],
+    "a": 0,
+    "why": "Suitability, feasibility and acceptability to stakeholders."
+  },
+  {
+    "ch": 8,
+    "type": "tf",
+    "q": "A hotel chain buying a newspaper is an example of related diversification.",
+    "a": false,
+    "why": "It is unrelated diversification."
+  },
+  {
+    "ch": 9,
+    "type": "mcq",
+    "q": "CSR is concerned primarily with the firm's relationships with its…",
+    "o": [
+      "competitors",
+      "stakeholders",
+      "auditors",
+      "patents"
+    ],
+    "a": 1,
+    "why": "Shareholders, employees, customers, suppliers, community and government."
+  },
+  {
+    "ch": 9,
+    "type": "tf",
+    "q": "The evidence that ethical business is more profitable is strong and consistent.",
+    "a": false,
+    "why": "The book calls it weak and contradictory."
+  },
+  {
+    "ch": 9,
+    "type": "gap",
+    "q": "Business ethics sets the framework for the operation of ____.",
+    "acc": [
+      "csr",
+      "corporate social responsibility"
+    ],
+    "why": "CSR is the application of business ethics."
+  },
+  {
+    "ch": 9,
+    "type": "mcq",
+    "q": "The argument that firms should be responsible simply because it is right is the…",
+    "o": [
+      "business argument",
+      "strategic argument",
+      "moral argument",
+      "critical perspective"
+    ],
+    "a": 2,
+    "why": "The moral argument."
+  },
+  {
+    "ch": 9,
+    "type": "tf",
+    "q": "Standards of business ethics vary between cultures and over time.",
+    "a": true,
+    "why": "Ethics depends on individual values, culture, norms and law."
+  },
+  {
+    "ch": 9,
+    "type": "mcq",
+    "q": "Carroll's pyramid of CSR includes economic, legal, ethical and…",
+    "o": [
+      "philanthropic responsibilities",
+      "marketing responsibilities",
+      "technical responsibilities",
+      "political responsibilities"
+    ],
+    "a": 0,
+    "why": "Philanthropic (discretionary) responsibilities sit at the top."
+  },
+  {
+    "ch": 10,
+    "type": "gap",
+    "q": "____ is the discovery or creation of a product or process; innovation turns it into a business reality.",
+    "acc": [
+      "invention"
+    ],
+    "why": "Invention versus innovation."
+  },
+  {
+    "ch": 10,
+    "type": "mcq",
+    "q": "In most countries a patent gives a monopoly for…",
+    "o": [
+      "5 years",
+      "10 years",
+      "20 years",
+      "50 years"
+    ],
+    "a": 2,
+    "why": "Usually 20 years."
+  },
+  {
+    "ch": 10,
+    "type": "tf",
+    "q": "There is clear evidence that larger firms are always more innovative.",
+    "a": false,
+    "why": "No clear link, though very expensive research is concentrated in large firms."
+  },
+  {
+    "ch": 10,
+    "type": "mcq",
+    "q": "Demand–pull innovation comes from…",
+    "o": [
+      "known technologies looking for uses",
+      "market demand",
+      "government decree",
+      "copying competitors"
+    ],
+    "a": 1,
+    "why": "Demand–pull is driven by the market."
+  },
+  {
+    "ch": 10,
+    "type": "mcq",
+    "q": "Tacit knowledge is…",
+    "o": [
+      "published in manuals",
+      "rarely documented and hard for outsiders to copy",
+      "the same in every firm",
+      "owned by the state"
+    ],
+    "a": 1,
+    "why": "That's why it is a source of competitive advantage."
+  },
+  {
+    "ch": 10,
+    "type": "tf",
+    "q": "More innovative firms tend to take an open approach, with partnerships and information exchange.",
+    "a": true,
+    "why": "Open innovation is associated with more innovative firms."
+  },
+  {
+    "ch": 11,
+    "type": "mcq",
+    "q": "Which is NOT one of the objectives of operations management?",
+    "o": [
+      "Quality",
+      "Dependability",
+      "Branding",
+      "Flexibility"
+    ],
+    "a": 2,
+    "why": "The objectives are quality, dependability, speed, flexibility and cost."
+  },
+  {
+    "ch": 11,
+    "type": "gap",
+    "q": "Because JIT starts from customer demand and works backwards, it is called a ____-through system.",
+    "acc": [
+      "pull"
+    ],
+    "why": "A pull-through system."
+  },
+  {
+    "ch": 11,
+    "type": "mcq",
+    "q": "The Kanban technique was developed by…",
+    "o": [
+      "Ford",
+      "Toyota",
+      "General Motors",
+      "Sony"
+    ],
+    "a": 1,
+    "why": "Toyota."
+  },
+  {
+    "ch": 11,
+    "type": "tf",
+    "q": "The operations function exists only in manufacturing.",
+    "a": false,
+    "why": "It exists in all kinds of organizations, including services."
+  },
+  {
+    "ch": 11,
+    "type": "mcq",
+    "q": "Benchmarking means…",
+    "o": [
+      "setting prices",
+      "improving quality by comparing with other organizations",
+      "measuring staff height",
+      "cutting all costs equally"
+    ],
+    "a": 1,
+    "why": "Learning from the practices of others."
+  },
+  {
+    "ch": 11,
+    "type": "tf",
+    "q": "Lean production integrates JIT and TQM.",
+    "a": true,
+    "why": "Along with flexible manufacturing and close supplier links."
+  },
+  {
+    "ch": 12,
+    "type": "mcq",
+    "q": "The 4Ps classification is credited to…",
+    "o": [
+      "Kotler (1983)",
+      "Drucker (1954)",
+      "McCarthy (1960)",
+      "Porter (1985)"
+    ],
+    "a": 2,
+    "why": "McCarthy (1960)."
+  },
+  {
+    "ch": 12,
+    "type": "mcq",
+    "q": "The view that good-quality goods will sell themselves is the…",
+    "o": [
+      "selling orientation",
+      "marketing orientation",
+      "product orientation",
+      "social orientation"
+    ],
+    "a": 2,
+    "why": "Product orientation, dominant until the 1950s."
+  },
+  {
+    "ch": 12,
+    "type": "gap",
+    "q": "Breaking the total market into distinct consumer groups is called ____.",
+    "acc": [
+      "segmentation",
+      "market segmentation"
+    ],
+    "why": "Segmentation, followed by targeting and positioning."
+  },
+  {
+    "ch": 12,
+    "type": "tf",
+    "q": "Consumerism is a social movement that informs consumers and acts as a pressure group.",
+    "a": true,
+    "why": "Consumer groups act as watchdogs."
+  },
+  {
+    "ch": 12,
+    "type": "tf",
+    "q": "Drucker claimed marketing is a narrow, specialized activity.",
+    "a": false,
+    "why": "He argued marketing encompasses all the firm's activities."
+  },
+  {
+    "ch": 12,
+    "type": "mcq",
+    "q": "Social media marketing shifts the marketing focus towards…",
+    "o": [
+      "the organization",
+      "the consumer",
+      "the state",
+      "suppliers"
+    ],
+    "a": 1,
+    "why": "Consumers share opinions with each other."
+  },
+  {
+    "ch": 13,
+    "type": "mcq",
+    "q": "HRM emerged as a concept…",
+    "o": [
+      "in the 1950s in Japan",
+      "in the 1980s in the USA",
+      "in the 1990s in Germany",
+      "in the 2000s in China"
+    ],
+    "a": 1,
+    "why": "1980s, initially in the USA."
+  },
+  {
+    "ch": 13,
+    "type": "gap",
+    "q": "Recruitment and selection methods should be reliable and ____.",
+    "acc": [
+      "valid"
+    ],
+    "why": "Reliability and validity."
+  },
+  {
+    "ch": 13,
+    "type": "mcq",
+    "q": "Which is NOT one of the four HRM activities in the book?",
+    "o": [
+      "Employee resourcing",
+      "Employee development",
+      "Product design",
+      "Employment relations"
+    ],
+    "a": 2,
+    "why": "The fourth is pay and performance."
+  },
+  {
+    "ch": 13,
+    "type": "tf",
+    "q": "Diversity management is more proactive than equal opportunities and focuses on individuals rather than groups.",
+    "a": true,
+    "why": "That is how the book distinguishes them."
+  },
+  {
+    "ch": 13,
+    "type": "mcq",
+    "q": "Ulrich is known for describing HR as a…",
+    "o": [
+      "cost centre",
+      "business partner",
+      "trade union",
+      "legal department"
+    ],
+    "a": 1,
+    "why": "HR as a business partner."
+  },
+  {
+    "ch": 13,
+    "type": "tf",
+    "q": "It is easy to prove that HR strategies contribute to organizational success.",
+    "a": false,
+    "why": "Their contribution is difficult to demonstrate."
+  },
+  {
+    "ch": 14,
+    "type": "mcq",
+    "q": "The three parts of the finance and accounting function are…",
+    "o": [
+      "auditing, tax, payroll",
+      "financial management, management accounting, financial reporting",
+      "budgets, shares, loans",
+      "assets, liabilities, equity"
+    ],
+    "a": 1,
+    "why": "Financial management, management accounting and financial reporting."
+  },
+  {
+    "ch": 14,
+    "type": "tf",
+    "q": "The book says share capital is the most significant source of finance for UK firms.",
+    "a": false,
+    "why": "Internally generated funds (reinvested profit) appear most significant."
+  },
+  {
+    "ch": 14,
+    "type": "gap",
+    "q": "A common investment appraisal technique is net present ____ (NPV).",
+    "acc": [
+      "value"
+    ],
+    "why": "Net present value."
+  },
+  {
+    "ch": 14,
+    "type": "mcq",
+    "q": "A balance sheet shows…",
+    "o": [
+      "profit over a period",
+      "assets and liabilities at the end of the accounting year",
+      "cash flows only",
+      "share prices"
+    ],
+    "a": 1,
+    "why": "A snapshot of assets and liabilities."
+  },
+  {
+    "ch": 14,
+    "type": "tf",
+    "q": "A firm with a healthy order book can still fail because of poor cash flow.",
+    "a": true,
+    "why": "Without cash it cannot pay its bills."
+  },
+  {
+    "ch": 14,
+    "type": "mcq",
+    "q": "Transfer pricing is a particularly useful tool for…",
+    "o": [
+      "sole traders",
+      "charities",
+      "multinational corporations",
+      "trade unions"
+    ],
+    "a": 2,
+    "why": "Multinationals price transfers between their units across countries."
+  }
+]

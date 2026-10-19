@@ -1,0 +1,560 @@
+{
+  "course": {
+    "slug": "pmb",
+    "code": "PMB",
+    "name": "Principles of Management & Business",
+    "position": 1
+  },
+  "book": {
+    "title": "Business in Context: An Introduction to Business and its Environment",
+    "edition": "8th edition",
+    "authors": "David Needle and Jane Burns",
+    "publisher": "Cengage Learning EMEA, 2023",
+    "isbn": "978-1-4737-8670-7"
+  },
+  "parts": {
+    "0": "Introduction",
+    "1": "Part One · The environmental context",
+    "2": "Part Two · Organizational and strategic contexts",
+    "3": "Part Three · The activities context"
+  },
+  "chapters": [
+    {
+      "n": 1,
+      "part": 0,
+      "title": "The Concept of Business in Context",
+      "pages": "1–9",
+      "outline": [
+        "Businesses and their contexts: business activities and the strategic, organizational and environmental levels",
+        "Interaction–influence, systems and contingency approaches",
+        "The structure of the book"
+      ],
+      "summary": [
+        "The book is built around one framework, the <mark>Business in Context model</mark>. It treats business broadly: a business is any organized effort to provide goods and services, so universities, hospitals and charities count alongside banks and car makers.",
+        "At the centre of the model are five <mark>business activities</mark>: innovation, operations, marketing, human resource management, and finance and accounting. These activities are surrounded by three layers of context. The <b>strategic</b> level covers management decisions, leadership and ethics. The <b>organizational</b> level covers goals, structure, ownership, size and organizational culture. The <b>environmental</b> level covers the economy, the state, technology, labour, and cultural and institutional frameworks. All of this sits inside the wider context of globalization.",
+        "The key idea is <mark>interaction</mark>: the contexts shape business activities, and business activities shape the contexts back. Two theories support the model. The <b>systems approach</b> sees business as inputs, internal processes and outputs that constantly interact. The <b>contingency approach</b> says there is no single best way to organize; the most successful firms fit their organization to their environment."
+      ],
+      "terms": [
+        [
+          "Business",
+          "An organized effort to produce goods and services to meet society's needs; includes not-for-profit organizations."
+        ],
+        [
+          "Systems approach",
+          "Business as a set of interacting parts, taking inputs from the environment and turning them into outputs."
+        ],
+        [
+          "Contingency approach",
+          "The best way to organize depends on the environment; successful firms adapt to prevailing conditions."
+        ],
+        [
+          "Three levels of context",
+          "Strategic, organizational and environmental, all set within globalization."
+        ]
+      ]
+    },
+    {
+      "n": 2,
+      "part": 1,
+      "title": "Globalization",
+      "pages": "13–57",
+      "outline": [
+        "What globalization is and when it started",
+        "Causes and drivers: factors external and internal to the firm",
+        "Global markets and globally organized production (the global factory, global value chains)",
+        "The multinational enterprise and the move to transnational firms",
+        "Strategic alliances, joint ventures, outsourcing and offshoring",
+        "Political and cultural aspects of globalization",
+        "Perspectives: globalist, anti-globalization, sceptical, de-globalization"
+      ],
+      "summary": [
+        "<mark>Globalization</mark> is the process through which the world's nations and economies become interlinked economically, politically and culturally. It grew out of international trade and foreign direct investment (FDI), and has been accelerated since about 1980 by information and communications technology (ICT).",
+        "Its growth has not been a straight line. There was a marked slowdown between 1914 and 1950, and again early in the 21st century. Drivers include the spread of capitalism, the search for lower costs, and technological change.",
+        "Production is now organized globally. In the <mark>global factory</mark>, one production process is split across firms in different countries. The <b>multinational enterprise (MNE)</b> is a central player. Many MNEs are moving towards a <b>transnational</b> model that combines global efficiency with responsiveness to local markets. Joint ventures, strategic alliances, outsourcing and offshoring are common ways to enter and operate in foreign markets, each with advantages and risks.",
+        "There are competing views. <b>Globalists</b> see globalization as inevitable and beneficial. The <b>anti-globalization</b> view stresses unequal benefits, the power of big business and environmental damage. <b>Sceptics</b> question how global the process really is. More recently, some writers argue we are seeing <b>de-globalization</b>."
+      ],
+      "terms": [
+        [
+          "Global factory",
+          "Production broken into stages carried out by different firms in different countries, mainly to cut costs."
+        ],
+        [
+          "MNE",
+          "A firm operating and managed from bases in several countries, coordinated by a central global strategy."
+        ],
+        [
+          "TNC",
+          "A transnational firm with weaker ties to its home country, aiming for flexibility, responsiveness and innovation."
+        ],
+        [
+          "Joint venture",
+          "Collaboration between firms, usually with shared ownership, for goals such as market entry or technology transfer."
+        ]
+      ]
+    },
+    {
+      "n": 3,
+      "part": 1,
+      "title": "The Environment and Business: The Economy and the State",
+      "pages": "59–109",
+      "outline": [
+        "Models for assessing the environment: PEST and its critique",
+        "Measuring and comparing national economies (GDP, GNP, per capita)",
+        "The changing geopolitics: Japan, the BRIC economies, China and the USA",
+        "How business affects the economy and how the economy affects business",
+        "The state and business: forms and difficulties of intervention, business as a pressure group",
+        "International integration: the WTO and the EU",
+        "Brexit"
+      ],
+      "summary": [
+        "Firms analyse their environment with models such as <mark>PEST</mark> (political, economic, social, technological) and SWOT; the Business in Context model is offered as a richer alternative. Economies are measured with indicators such as <b>GDP</b> and <b>GNP</b>, often per head of population.",
+        "The USA remains dominant, but the rapid growth of Japan and the Asian tigers has faded, and forecasts suggest <mark>China</mark> could become the largest economy by about 2040. Economies have generally become more liberal, with more privatization even in formerly state-controlled countries such as China and Russia.",
+        "Market economies differ. Three broad models are identified: <b>Anglo-Saxon</b>, <b>social market</b> and <b>Asian</b>. Business and the economy influence each other, for example through overseas investment.",
+        "The <mark>state</mark> includes government, the civil service, the judiciary, the armed forces and the police. It intervenes in business in many ways, creating both opportunities and constraints, and business lobbies the state in return. International bodies such as the <b>WTO</b> and the <b>EU</b> show a trend towards economic and political integration, though national interests have recently pushed back."
+      ],
+      "terms": [
+        [
+          "PEST",
+          "A checklist for scanning the environment: political, economic, social and technological factors."
+        ],
+        [
+          "The state",
+          "Parliament or similar body, government, judiciary, civil service, police and armed forces."
+        ],
+        [
+          "WTO",
+          "Global body that grew out of the GATT and sets rules for trade between member states."
+        ],
+        [
+          "EU",
+          "Union of 27 states (2022) aiming at free movement of goods, finance and people in a single market."
+        ]
+      ]
+    },
+    {
+      "n": 4,
+      "part": 1,
+      "title": "The Environment and Business: Technology and Labour",
+      "pages": "111–153",
+      "outline": [
+        "Technology: determinant or choice?",
+        "Technology and strategy; ICT and the digital economy",
+        "Problems and issues with digital technology",
+        "Technology change, jobs and people: automation and job content",
+        "Labour: employment trends, flexibility, working hours, the gig economy",
+        "Globalization, labour mobility and the COVID-19 pandemic",
+        "Trade unions"
+      ],
+      "summary": [
+        "Technology is both a <mark>determinant</mark> of how businesses work and a <mark>product of management choice</mark>. Its main strategic value lies in gaining competitive advantage through higher productivity, better quality and lower costs.",
+        "<b>ICT</b> and the <b>digital economy</b> have transformed businesses, work and customers. E-commerce has had its greatest impact in business-to-business (B2B) transactions.",
+        "Technology changes both the <b>number</b> of jobs and their <b>content</b>. The evidence is mixed: there are job gains and losses, and examples of both up-skilling and de-skilling.",
+        "In labour markets, work has shifted from primary and industrial sectors to services, with growing demand for <mark>flexibility</mark>. The <b>gig economy</b> has grown, with self-employed workers who have no guaranteed hours. Jobs move around the world, but people themselves rarely move country. COVID-19 sped up existing trends in digital technology and patterns of work. <b>Trade unions</b> have protected jobs and pay, but their membership and influence have fallen in most countries."
+      ],
+      "terms": [
+        [
+          "Technology",
+          "Applying knowledge and skills to create and use materials, processes and products."
+        ],
+        [
+          "Digital economy",
+          "Business built on ICT, the internet and AI that link people and machines."
+        ],
+        [
+          "Gig economy",
+          "Self-employed work with no guaranteed minimum hours."
+        ],
+        [
+          "Trade union",
+          "Employees organized collectively to protect jobs, improve pay and conditions and influence management."
+        ]
+      ]
+    },
+    {
+      "n": 5,
+      "part": 1,
+      "title": "Cultural and Institutional Frameworks",
+      "pages": "155–188",
+      "outline": [
+        "Culture defined",
+        "The convergence–diversity debate",
+        "Convergence, its implications for managers and its limits",
+        "Cultural approaches: Hall, Hofstede, Trompenaars, GLOBE and the World Values Survey",
+        "Institutional frameworks: Whitley's business systems; Anglo-Saxon, social market, Asian and Chinese models",
+        "Varieties of capitalism: liberal versus coordinated market economies",
+        "Japan: convergence and diversity"
+      ],
+      "summary": [
+        "This chapter sets two views against each other. <mark>Convergence</mark> says globalization, technology transfer and multinationals are making countries and business practices more alike. <mark>Diversity</mark> says national culture and institutions keep them different.",
+        "<b>Culture</b> is the set of values, norms and beliefs a society transmits socially. It is studied through writers such as <b>Hall</b> (high- and low-context cultures), <b>Hofstede</b> (dimensions such as power distance, individualism, masculinity and uncertainty avoidance), <b>Trompenaars</b> and the <b>GLOBE</b> project. Culture is a useful but limited tool for explaining business behaviour.",
+        "<b>Institutions</b>, such as the state, the financial system, education and labour relations, also shape business. <mark>Whitley's</mark> national business systems model and the varieties-of-capitalism approach (liberal versus coordinated market economies) explain differences between the <b>Anglo-Saxon</b>, <b>social market</b> and <b>Asian</b> models.",
+        "The chapter ends with Japan since 1945 as a case that shows both convergence and lasting cultural and institutional difference."
+      ],
+      "terms": [
+        [
+          "Convergence",
+          "The idea that countries and firms are becoming alike, driven by technology transfer and multinationals."
+        ],
+        [
+          "Culture",
+          "Socially transmitted values, norms and beliefs shown in behaviour, practices and institutions."
+        ],
+        [
+          "Anglo-Saxon capitalism",
+          "Free-market model (USA, UK) where shareholders are the main stakeholders and labour is flexible."
+        ],
+        [
+          "Uncertainty avoidance",
+          "Hofstede's dimension for how uncomfortable a society is with ambiguity and risk."
+        ]
+      ]
+    },
+    {
+      "n": 6,
+      "part": 2,
+      "title": "Organizational Aspects of Business",
+      "pages": "191–242",
+      "outline": [
+        "Goals: their nature, development and multiple goals",
+        "Structure: influences, types and trends; structure and performance",
+        "Ownership: types, ownership and control, the public sector and privatization",
+        "Size: small businesses and their value",
+        "Organizational and corporate culture"
+      ],
+      "summary": [
+        "The organizational level has five elements: <mark>goals, structure, ownership, size and culture</mark>. They interact with each other and with the environment, strategy and business activities.",
+        "<b>Goals</b> come from a political process of influence, conflict and compromise between interest groups. A firm can have several goals at once, and they may conflict.",
+        "<b>Structure</b> is influenced by strategy, technology, size, environment and culture. The <b>multidivisional</b> form, with business units run as profit centres under a head office, is important for global firms. The link between structure and performance remains unproven.",
+        "<b>Ownership</b> matters because of the <mark>agency problem</mark>: managers (agents) may not act in the interests of shareholders (principals). The chapter also compares public and private sector management and reviews privatization. <b>Size</b> affects structure, market power and relations with the state; small firms make an important economic contribution.",
+        "The book separates <b>organizational culture</b> (shared values that grow from history, technology, people and so on) from <b>corporate culture</b> (a culture deliberately created by top management). It questions how far culture drives performance and whether culture can really be changed."
+      ],
+      "terms": [
+        [
+          "Agency problem",
+          "Agents (managers) acting in their own interest rather than in the interest of principals (shareholders)."
+        ],
+        [
+          "Multidivisional company",
+          "Business units run as profit centres, coordinated by a corporate headquarters."
+        ],
+        [
+          "Privatization",
+          "Selling public assets to private ownership, common in the UK in the 1980s and 1990s."
+        ],
+        [
+          "Corporate culture",
+          "A culture deliberately created by management to achieve strategic goals."
+        ]
+      ]
+    },
+    {
+      "n": 7,
+      "part": 2,
+      "title": "Management and Leadership",
+      "pages": "245–278",
+      "outline": [
+        "What management is and the manager's right to manage",
+        "What managers are supposed to do: models of management and their critique",
+        "What managers actually do: reality versus theory",
+        "Leadership: definitions and differences from management",
+        "Why leadership matters and theories of leadership"
+      ],
+      "summary": [
+        "<mark>Management</mark> is often described as getting things done through other people and pulling everything together to meet organizational and environmental demands. It is hard to define because management work varies so much.",
+        "A manager's <b>legitimacy</b> rests on property rights, the law, different forms of power and an underlying value system.",
+        "Classical models, such as <b>Fayol's</b> principles of management, describe what managers are supposed to do. Studies of what managers <b>actually</b> do, such as <b>Mintzberg's</b> ten managerial roles, show that real work is fragmented and rarely follows these models, though some links to classical ideas remain.",
+        "<mark>Leadership</mark> is about influencing and inspiring people to higher performance, while management focuses on coordination. Leadership matters most in times of rapid change and intense competition. Many leadership theories exist, but most apply only in limited situations. In line with the model, both management and leadership are best understood in their organizational and environmental context."
+      ],
+      "terms": [
+        [
+          "Management",
+          "Balancing internal and external influences and coordinating activities and people to achieve goals."
+        ],
+        [
+          "Leadership",
+          "Influencing individuals and groups and inspiring them to higher performance."
+        ],
+        [
+          "Fayol",
+          "French writer whose principles of management describe the classical view of what managers should do."
+        ],
+        [
+          "Mintzberg",
+          "Studied real managers and identified ten roles in three groups: interpersonal, informational and decisional."
+        ]
+      ]
+    },
+    {
+      "n": 8,
+      "part": 2,
+      "title": "Strategy",
+      "pages": "279–324",
+      "outline": [
+        "What is strategy?",
+        "The strategic process: approaches, contexts, uses and value",
+        "Environmental aspects: the general environment and the competitive environment",
+        "Organizational aspects: resource analysis, the resource-based view, the value chain, portfolio analysis",
+        "Strategic options at business and corporate level",
+        "Strategic choice"
+      ],
+      "summary": [
+        "Strategy formation is a <mark>mix of rational analysis and subjective, political decision-making</mark>, shaped by the environment, the organization, management values and negotiation between interest groups. Different approaches may suit a firm at different stages.",
+        "A strategy coordinates activities and focuses resources on chosen objectives, but the link between strategy and performance is hard to prove.",
+        "<b>Environmental analysis</b> of the general and competitive environment (for example with SWOT and Porter's five forces) identifies opportunities and threats; how they are read depends on managers' values and creativity.",
+        "<b>Organizational analysis</b> looks at four kinds of resource: product, physical, financial and people. Tools include <b>core competencies</b>, the <mark>value chain</mark> (primary and support activities) and <mark>portfolio analysis</mark> such as the BCG matrix (stars, cash cows, question marks, dogs).",
+        "Options include related and unrelated <b>diversification</b> and <b>backward or forward integration</b>. Each option should be judged on its <mark>suitability, feasibility and acceptability</mark>."
+      ],
+      "terms": [
+        [
+          "SWOT",
+          "Strengths, weaknesses, opportunities and threats: a framework for a firm's current position."
+        ],
+        [
+          "Value chain",
+          "Porter's view of the firm as primary and support activities that build up value for the customer."
+        ],
+        [
+          "BCG matrix",
+          "Portfolio tool sorting products by market share and market growth into stars, cash cows, question marks and dogs."
+        ],
+        [
+          "Vertical integration",
+          "Backward (towards suppliers) or forward (towards distribution and customers) integration."
+        ]
+      ]
+    },
+    {
+      "n": 9,
+      "part": 2,
+      "title": "Business Ethics, Sustainability and Corporate Social Responsibility",
+      "pages": "325–355",
+      "outline": [
+        "Defining business ethics, sustainability and CSR",
+        "Areas of activity in CSR and stakeholders",
+        "Historical development of ethical concerns in business",
+        "Why should businesses be socially responsible? Moral, business and strategic arguments",
+        "The critical perspective: can business be ethical?",
+        "Mechanisms for ethical business and social responsibility"
+      ],
+      "summary": [
+        "<mark>Business ethics</mark> and <mark>CSR</mark> are both about conducting business morally, acting responsibly towards <b>stakeholders</b> and protecting the environment. Business ethics sets the framework; CSR applies it to the firm's relationships with shareholders, employees, customers, suppliers, the community and government.",
+        "Both ideas are complex, because stakeholders have different and sometimes competing needs. Ethics also varies between cultures and over time.",
+        "At the heart of the debate is the nature of business itself, and whether business is the right agent for social responsibility. There is a <b>moral</b> argument, a <b>business</b> argument (ethical business is profitable business) and a <b>strategic</b> argument, plus a <b>critical</b> perspective that doubts business can be truly ethical. The evidence that responsible business is more successful is <mark>weak and contradictory</mark>.",
+        "Firms can choose from many strategies and practices to act responsibly, such as codes of ethics, reporting and stakeholder engagement. Carroll's pyramid of CSR (economic, legal, ethical and philanthropic responsibilities) is one useful framework."
+      ],
+      "terms": [
+        [
+          "Business ethics",
+          "Moral standards and choices of right and wrong in business, shaped by individuals, culture, norms and law."
+        ],
+        [
+          "CSR",
+          "Applying ethics to the firm's relationships with stakeholders and the environment."
+        ],
+        [
+          "Stakeholders",
+          "Groups with an interest in the firm: shareholders, employees, customers, suppliers, community, government."
+        ],
+        [
+          "Carroll's pyramid",
+          "Economic, legal, ethical and philanthropic responsibilities of business."
+        ]
+      ]
+    },
+    {
+      "n": 10,
+      "part": 3,
+      "title": "Innovation",
+      "pages": "359–403",
+      "outline": [
+        "Invention, innovation and R&D",
+        "Types and scope of innovation",
+        "Expenditure on R&D",
+        "Entrepreneurship",
+        "Environmental aspects: the economy, the state, national differences and technology",
+        "Organizational aspects: size, structure and culture",
+        "Innovation strategies and their constraints"
+      ],
+      "summary": [
+        "<mark>Invention</mark> is creating something new; <mark>innovation</mark> is turning it into something profitable or useful. Innovation can involve products, processes, marketing, organization and management, and can be radical or minor. It matters in services and retail as much as in manufacturing, and is increasingly linked to social value and sustainability.",
+        "The most successful innovations are <b>integrated</b>: product, process, organizational and social change happen together. <b>Entrepreneurs</b> drive innovation in organizations of every size.",
+        "Innovation is seen as the key to productivity, market share, profit and survival, and even to national recovery, though these links are hard to prove. Governments support innovation for economic, political and social reasons, and nations differ through their <b>national systems of innovation</b>.",
+        "Innovation can come from <b>technology–push</b> or <b>demand–pull</b>, and understanding the market is vital. There is no clear link between company size and innovativeness, though very expensive research is concentrated in large firms. Innovative firms build a creative culture, integrate R&D with production and marketing, and often take an <mark>open approach</mark> with partners. Some firms aim to lead; others follow by licensing or copying."
+      ],
+      "terms": [
+        [
+          "Innovation",
+          "The process by which inventions and ideas become a business or operational reality."
+        ],
+        [
+          "Demand–pull vs technology–push",
+          "Innovation driven by market demand versus by applying known technologies."
+        ],
+        [
+          "Tacit knowledge",
+          "Undocumented know-how built up in an organization; hard for outsiders to copy."
+        ],
+        [
+          "Patent",
+          "A legal monopoly over an invention, usually for 20 years, in return for full disclosure."
+        ]
+      ]
+    },
+    {
+      "n": 11,
+      "part": 3,
+      "title": "Operations",
+      "pages": "405–445",
+      "outline": [
+        "Identifying the operations function: manufacturing and non-manufacturing",
+        "Conflicting objectives and links with other functions",
+        "Main activities: design of operations systems; planning and control",
+        "Operations and the environment: economy, state and technology",
+        "Organizational aspects: size and structure",
+        "Operations strategies: the product–process matrix and lean production"
+      ],
+      "summary": [
+        "<mark>Operations</mark> is a transformation process that turns inputs such as materials and labour into goods and services. It exists in every kind of organization, not just manufacturing.",
+        "Its main activities are <b>designing</b> the system and <b>controlling</b> it so it runs effectively. The system now covers the whole <b>supply chain</b>, from components to customers.",
+        "The objectives are <mark>quality, dependability, speed, flexibility and cost</mark>. A central problem is reconciling customer satisfaction with efficient use of resources. Traditionally the focus was efficiency; now flexibility and quality matter more.",
+        "Globalization has stretched supply chains and created the global factory. Technology, including digital tools and AI, has transformed both products and processes. Japanese methods have been very influential: <b>JIT</b>, <b>TQM</b> and <mark>lean production</mark>. The most successful operations strategies integrate the whole system, have a clear focus and fit the strategies of other functions."
+      ],
+      "terms": [
+        [
+          "Just-in-time (JIT)",
+          "A pull system producing only what is needed when needed, cutting inventory; uses Kanban (Toyota)."
+        ],
+        [
+          "TQM",
+          "A company-wide, long-term approach building quality into every part of the operation."
+        ],
+        [
+          "Lean production",
+          "Toyota-originated system combining JIT, TQM, flexible manufacturing and close supplier links."
+        ],
+        [
+          "Benchmarking",
+          "Improving quality by comparing with and learning from other organizations."
+        ]
+      ]
+    },
+    {
+      "n": 12,
+      "part": 3,
+      "title": "Marketing",
+      "pages": "447–507",
+      "outline": [
+        "Definitions and orientations: product, selling and marketing orientations",
+        "Market research, segmentation, targeting and positioning",
+        "Branding",
+        "The 4Ps, relationship marketing and the 7Ps",
+        "Buyer behaviour",
+        "Environmental aspects: economy, state, consumerism, technology, digital and social media, culture",
+        "Organizational and strategic aspects of marketing"
+      ],
+      "summary": [
+        "<mark>Marketing</mark> means understanding customer needs and behaviour and researching markets so goods and services can be developed, priced, promoted and distributed effectively. It applies to consumers and organizations, and can market people, places, ideas and corporate image.",
+        "Thinking has moved from a <b>product orientation</b> (good products sell themselves), to a <b>selling orientation</b> (customers must be persuaded), to a <b>marketing orientation</b> (the customer is sovereign).",
+        "The <mark>marketing mix</mark>, or 4Ps (product, price, promotion, place), is the core of marketing strategy. Firms <b>segment</b> markets, <b>target</b> chosen segments and <b>position</b> products, adjusting the mix for each. <b>Branding</b> is a major source of differentiation.",
+        "Marketing sits at the boundary between the firm and its environment, so economic change, regulation, technology, social trends, globalization and <b>consumerism</b> all affect it. Strategy depends on understanding the market and integrating marketing with other functions. Recently, <mark>digital and social media marketing</mark> have strengthened the central role of the consumer."
+      ],
+      "terms": [
+        [
+          "Marketing mix (4Ps)",
+          "Product, price, promotion and place; a classification credited to McCarthy (1960)."
+        ],
+        [
+          "Segmentation",
+          "Dividing the total market into distinct consumer groups."
+        ],
+        [
+          "Branding",
+          "Names, logos and symbols that distinguish a product and build loyalty."
+        ],
+        [
+          "Consumerism",
+          "A social movement that informs consumers and acts as a pressure group for their interests."
+        ]
+      ]
+    },
+    {
+      "n": 13,
+      "part": 3,
+      "title": "Human Resource Management",
+      "pages": "509–554",
+      "outline": [
+        "Defining HRM, its activities and how it is performed",
+        "Employee resourcing: recruitment, selection, equal opportunities and diversity",
+        "Employee development: training, management development, careers, talent",
+        "Pay and performance: reward systems and performance management",
+        "Employment relations and employee involvement",
+        "Environmental and organizational aspects of HRM",
+        "HR strategies: planning, resource-based view, high-performance work systems"
+      ],
+      "summary": [
+        "<mark>HRM</mark> emerged in the 1980s, first in the USA, as a more strategic version of personnel management. In large organizations specialists do it, but all managers do some HR work, which can cause conflict. Consultants and outsourcing are increasingly used.",
+        "There are four overlapping activities: <mark>employee resourcing, employee development, pay and performance, and employment relations</mark>.",
+        "<b>Resourcing</b> covers recruitment and selection, where methods should be <b>reliable</b> and <b>valid</b>, and where equal opportunities and diversity management matter. <b>Development</b> covers training, with a recent focus on management and leadership. <b>Pay</b> combines basic pay, pay for performance and benefits. <b>Performance management</b> links individual development to strategic goals.",
+        "More than most functions, HRM is shaped by its economic, political, legal, social and cultural environment. Tensions with line managers and questions about HR's status are common. HR strategies follow the firm's strategy, but their contribution to success is hard to demonstrate. Ulrich's idea of HR as a <b>business partner</b> is a key reference."
+      ],
+      "terms": [
+        [
+          "HRM",
+          "Strategic, integrated management of people, replacing traditional personnel management."
+        ],
+        [
+          "Employee resourcing",
+          "Meeting the demand for labour through recruitment and selection."
+        ],
+        [
+          "Diversity management",
+          "A proactive approach focused on individuals, beyond legal equal-opportunity compliance."
+        ],
+        [
+          "Performance management",
+          "Appraisal and related tools linking individual contribution to organizational performance."
+        ]
+      ]
+    },
+    {
+      "n": 14,
+      "part": 3,
+      "title": "Finance and Accounting",
+      "pages": "555–588",
+      "outline": [
+        "Principles of accounting",
+        "Financial management: share capital, loan capital and other financing",
+        "Management accounting: budgeting, costing, investment appraisal, cash flow",
+        "Financial reporting: balance sheet, profit and loss, cash flow statements, ratio analysis",
+        "Accounting and corporate governance",
+        "Environmental aspects: economy, culture, harmonization",
+        "Organizational and strategic aspects: firm size, transfer pricing, limitations of accounting"
+      ],
+      "summary": [
+        "The finance and accounting function has three parts: <mark>financial management, management accounting and financial reporting</mark>.",
+        "<b>Financial management</b> funds the business. Sources are share capital, loan capital, state finance and internally generated funds; reinvested profit appears to be the <mark>most significant source</mark> in the UK and elsewhere.",
+        "<b>Management accounting</b> supports planning and control: budgets, cost analysis, investment appraisal (for example NPV), cash-flow management and strategic decisions.",
+        "<b>Financial reporting</b> produces the balance sheet, profit and loss account and cash flow statement within a legal framework. Issues include whether accounts give a true and fair view and how much to disclose. Ratios help interpret them.",
+        "The function is shaped by its environment: state regulation, inflation, currency changes and national culture, so practices still differ between countries despite harmonization. <b>Corporate governance</b> has become increasingly important. In large firms, cost allocation and <b>transfer pricing</b> matter, especially for multinationals. Accounting information is vital for decisions, but it is partly subjective and can be used to justify political choices."
+      ],
+      "terms": [
+        [
+          "Share capital",
+          "Funds raised by issuing shares; holders get part ownership and dividends."
+        ],
+        [
+          "Loan capital",
+          "Borrowed funds such as bank loans, debentures and overdrafts; interest and repayment are required."
+        ],
+        [
+          "Balance sheet",
+          "Statement of assets and liabilities at the end of the accounting year."
+        ],
+        [
+          "Transfer pricing",
+          "Prices charged between units of the same firm; a useful tool for multinationals."
+        ]
+      ]
+    }
+  ]
+}

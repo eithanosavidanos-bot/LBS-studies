@@ -1,0 +1,783 @@
+<title>PMB Study Room</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a study desk. Sticky course bar on top, chapter rail on the left, reading column in the middle, tutor drawer slides in from the right. */
+:root{
+  --bg:#F3F5F1; --surface:#FFFFFF; --ink:#17222C; --muted:#5A6570; --line:#D9DED7;
+  --accent:#0E6B66; --accent-ink:#FFFFFF; --accent-soft:#DDEEEC;
+  --hl:#F6E58A; --hl-ink:#17222C;
+  --good:#2C7A4B; --good-soft:#E1F1E6; --bad:#B23A33; --bad-soft:#F7E2E0;
+  --display:"Archivo",system-ui,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --ui:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1519; --surface:#172027; --ink:#E4E9EC; --muted:#99A5AE; --line:#2A3640;
+  --accent:#4DB8AE; --accent-ink:#0B1A19; --accent-soft:#183331;
+  --hl:#5F5420; --hl-ink:#F6EFC8;
+  --good:#63C78E; --good-soft:#163024; --bad:#EA8078; --bad-soft:#3A1E1C; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1519; --surface:#172027; --ink:#E4E9EC; --muted:#99A5AE; --line:#2A3640;
+  --accent:#4DB8AE; --accent-ink:#0B1A19; --accent-soft:#183331;
+  --hl:#5F5420; --hl-ink:#F6EFC8;
+  --good:#63C78E; --good-soft:#163024; --bad:#EA8078; --bad-soft:#3A1E1C; color-scheme:dark}
+
+*{box-sizing:border-box}
+html,body{background:var(--bg);color:var(--ink)}
+body{font-family:var(--ui);font-size:15px;line-height:1.5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--surface)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+
+/* top bar */
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.bar .wrap{display:flex;align-items:center;gap:16px;min-height:60px;flex-wrap:wrap;padding-block:8px}
+.brand{display:flex;align-items:baseline;gap:10px;background:none;border:0;padding:0}
+.brand b{font-family:var(--display);font-stretch:85%;font-weight:800;font-size:20px;letter-spacing:-.01em}
+.brand span{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.tabs{display:flex;gap:4px;flex-wrap:wrap}
+.tab{background:none;border:0;border-radius:999px;padding:7px 14px;font-weight:600;color:var(--muted)}
+.tab:hover{color:var(--ink);background:var(--bg)}
+.tab[aria-current="page"]{background:var(--ink);color:var(--surface)}
+.spacer{flex:1}
+.who{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--good)}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:8px 14px;font-weight:600}
+.btn:hover{border-color:var(--ink)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.08)}
+.btn.small{padding:5px 10px;font-size:13px}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);font-weight:600;text-decoration:underline;text-underline-offset:3px}
+
+main{padding-block:28px 80px}
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0}
+h1{font-stretch:85%;font-weight:800;font-size:clamp(28px,4vw,40px);letter-spacing:-.015em;line-height:1.1}
+h2{font-stretch:90%;font-weight:750;font-size:24px;line-height:1.2}
+h3{font-weight:700;font-size:16px}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.lede{font-family:var(--body);font-size:18px;color:var(--muted);max-width:62ch;margin:10px 0 0}
+.muted{color:var(--muted)}
+.mono{font-family:var(--mono)}
+
+/* desk layout */
+.desk{display:grid;grid-template-columns:250px minmax(0,1fr);gap:32px;margin-top:24px}
+.rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 84px);align-self:start;max-height:calc(100vh - 110px);overflow:auto;padding-right:4px}
+.rail .part{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:16px 0 6px}
+.rail .part:first-child{margin-top:0}
+.chbtn{display:grid;grid-template-columns:28px 1fr auto;gap:6px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-radius:8px;padding:7px 8px;color:var(--ink)}
+.chbtn:hover{background:var(--surface)}
+.chbtn[aria-current="true"]{background:var(--accent-soft)}
+.chbtn .n{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.chbtn .t{font-size:14px;line-height:1.3}
+.chbtn .s{font-family:var(--mono);font-size:11px;color:var(--good)}
+.chselect{display:none;width:100%;padding:10px;border-radius:8px;border:1px solid var(--line);background:var(--surface)}
+
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(18px,3vw,36px);min-width:0}
+.reading{font-family:var(--body);font-size:17px;line-height:1.65;max-width:66ch}
+.reading p{margin:0 0 1em}
+mark{background:var(--hl);color:var(--hl-ink);padding:0 .15em;border-radius:2px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin:12px 0 22px;font-size:13px;color:var(--muted)}
+.terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin-top:8px}
+.term{border-top:2px solid var(--ink);padding-top:10px}
+.term b{display:block;font-family:var(--display);font-weight:700;margin-bottom:4px}
+.term span{font-family:var(--body);font-size:15px;color:var(--muted)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
+.section-gap{margin-top:30px}
+.outline{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:0}
+.outline li{display:grid;grid-template-columns:34px 1fr;gap:8px;padding:10px 0;border-bottom:1px dashed var(--line);font-family:var(--body);font-size:16px}
+.outline li .k{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:3px}
+.notice{border:1px solid var(--line);border-left:4px solid var(--hl);background:var(--surface);border-radius:var(--r);padding:16px 18px;display:grid;gap:6px}
+.notice p{margin:0}
+
+/* home */
+.courses{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:26px}
+.course{display:grid;gap:10px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px}
+button.course:hover{border-color:var(--ink)}
+.course .code{font-family:var(--display);font-stretch:80%;font-weight:800;font-size:44px;line-height:1;letter-spacing:-.02em}
+.course.soon{background:transparent;border-style:dashed;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:3px 10px;color:var(--muted)}
+
+/* exam */
+.examgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:10px;margin-top:18px}
+.pick{display:grid;gap:4px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px}
+.pick:hover{border-color:var(--ink)}
+.pick.all{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.pick.all .muted{color:inherit;opacity:.75}
+.pick .best{font-family:var(--mono);font-size:12px;color:var(--good)}
+.pick.all .best{color:inherit}
+.qhead{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:center}
+.progress{height:6px;background:var(--line);border-radius:999px;overflow:hidden;margin:14px 0 24px}
+.progress i{display:block;height:100%;background:var(--accent)}
+.qtype{display:inline-block;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--line);border-radius:4px;padding:2px 6px;color:var(--muted)}
+.qtext{font-family:var(--body);font-size:20px;line-height:1.45;margin:14px 0 20px;max-width:60ch}
+.gapline{display:inline-block;min-width:90px;border-bottom:2px solid var(--ink);margin:0 4px}
+.opts{display:grid;gap:10px;max-width:640px}
+.opt{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:baseline;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-family:var(--body);font-size:16px}
+.opt:hover:not(:disabled){border-color:var(--ink)}
+.opt .l{font-family:var(--mono);font-size:13px;color:var(--muted)}
+.opt.right{border-color:var(--good);background:var(--good-soft)}
+.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
+.opt:disabled{cursor:default}
+.tf{display:flex;gap:10px;flex-wrap:wrap}
+.tf .opt{grid-template-columns:1fr;min-width:140px;text-align:center;font-family:var(--ui);font-weight:600}
+.gapform{display:flex;gap:10px;flex-wrap:wrap;max-width:560px}
+.gapform input{flex:1;min-width:0;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);font-family:var(--body);font-size:16px}
+.feedback{margin-top:20px;border-radius:8px;padding:14px 16px;max-width:640px;font-family:var(--body)}
+.feedback.ok{background:var(--good-soft)} .feedback.no{background:var(--bad-soft)}
+.feedback b{font-family:var(--ui)}
+.score{font-family:var(--display);font-stretch:80%;font-weight:800;font-size:64px;line-height:1}
+.review{list-style:none;padding:0;margin:20px 0 0;display:grid;gap:10px}
+.review li{display:grid;grid-template-columns:24px 1fr;gap:8px;font-family:var(--body);font-size:15px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.review .ok{color:var(--good);font-weight:700}.review .no{color:var(--bad);font-weight:700}
+
+/* gate */
+.gate{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:40px;align-items:start;margin-top:10px}
+.gatecard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:26px;display:grid;gap:14px}
+.field{display:grid;gap:6px}
+.field label{font-size:13px;font-weight:600}
+.field input{padding:12px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.field input.codein{font-family:var(--mono);font-size:18px;letter-spacing:.08em;text-transform:uppercase}
+.msg{font-size:14px;border-radius:8px;padding:10px 12px}
+.msg.err{background:var(--bad-soft);color:var(--ink)}
+.msg.info{background:var(--accent-soft)}
+.toc-preview{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:0}
+.toc-preview li{display:grid;grid-template-columns:30px 1fr;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);font-family:var(--body)}
+.toc-preview li span{font-family:var(--mono);font-size:12px;color:var(--muted);padding-top:3px}
+
+/* admin */
+.admin-new{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.admin-new input{flex:1;min-width:180px;padding:10px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+.newcode{margin-top:16px;border:2px dashed var(--accent);border-radius:var(--r);padding:16px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.newcode .c{font-family:var(--mono);font-size:24px;letter-spacing:.08em;font-weight:500}
+.tablewrap{overflow-x:auto;margin-top:16px}
+table{border-collapse:collapse;width:100%;min-width:620px;font-size:14px}
+th{text-align:left;font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;padding:8px 10px;border-bottom:1px solid var(--line)}
+td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle}
+td.code{font-family:var(--mono);letter-spacing:.05em}
+.pill{display:inline-block;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:600}
+.pill.unused{background:var(--hl);color:var(--hl-ink)}
+.pill.active{background:var(--good-soft);color:var(--good)}
+.pill.revoked{background:var(--bad-soft);color:var(--bad)}
+
+/* tutor */
+.fab{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:25;border:0;border-radius:999px;padding:13px 20px;background:var(--ink);color:var(--surface);font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,.18);display:flex;gap:8px;align-items:center}
+.fab i{width:9px;height:9px;border-radius:50%;background:var(--accent);display:inline-block}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(440px,100%);z-index:40;background:var(--surface);border-left:1px solid var(--line);display:flex;flex-direction:column;box-shadow:-10px 0 30px rgba(0,0,0,.12);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
+.drawer header{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--line)}
+.drawer header h3{flex:1}
+.chat{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+.bubble{max-width:92%;padding:10px 13px;border-radius:12px;font-family:var(--body);font-size:15px;line-height:1.55;overflow-wrap:anywhere}
+.bubble p{margin:0 0 .6em}.bubble p:last-child{margin:0}
+.bubble ul{margin:.2em 0 .6em;padding-left:1.2em}
+.bubble.user{align-self:flex-end;background:var(--accent);color:var(--accent-ink);border-bottom-right-radius:4px;font-family:var(--ui)}
+.bubble.assistant{align-self:flex-start;background:var(--bg);border-bottom-left-radius:4px}
+.bubble.sys{align-self:stretch;max-width:none;background:var(--accent-soft);font-family:var(--ui);font-size:14px}
+.suggest{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 10px}
+.suggest button{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 11px;font-size:13px}
+.suggest button:hover{border-color:var(--ink)}
+.composer{display:flex;gap:8px;padding:12px 16px;border-top:1px solid var(--line)}
+.composer textarea{flex:1;min-width:0;resize:none;height:46px;padding:11px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+
+@media (max-width:820px){
+  .desk{grid-template-columns:minmax(0,1fr);gap:16px}
+  .rail{display:none}
+  .chselect{display:block}
+  .gate{grid-template-columns:minmax(0,1fr)}
+  .bar .wrap{gap:8px}
+  .tabs{order:3;width:100%;overflow-x:auto;flex-wrap:nowrap}
+  .tab{white-space:nowrap;flex-shrink:0}
+  .brand span{display:none}
+  .brand b{white-space:nowrap}
+}
+@media (prefers-reduced-motion:no-preference){
+  .drawer{animation:slide .22s ease-out}
+  @keyframes slide{from{transform:translateX(30px);opacity:.6}to{transform:none;opacity:1}}
+}
+</style>
+
+<div class="bar"><div class="wrap" id="bar"></div></div>
+<main class="wrap" id="main"></main>
+<div id="tutor"></div>
+
+<script>
+/* ---------------- Course content (summaries and questions are original study notes, not text from the book) ---------------- */
+const BOOK = {
+  title: "Business in Context: An Introduction to Business and its Environment",
+  edition: "8th edition", authors: "David Needle and Jane Burns",
+  publisher: "Cengage Learning EMEA, 2023", isbn: "978-1-4737-8670-7"
+};
+const PARTS = {0:"Introduction",1:"Part One · The environmental context",2:"Part Two · Organizational and strategic contexts",3:"Part Three · The activities context"};
+const CH = [
+ {n:1,part:0,title:"The Concept of Business in Context",pages:"1–9",
+  outline:["Businesses and their contexts: business activities and the strategic, organizational and environmental levels","Interaction–influence, systems and contingency approaches","The structure of the book"],
+  summary:["The book is built around one framework, the <mark>Business in Context model</mark>. It treats business broadly: a business is any organized effort to provide goods and services, so universities, hospitals and charities count alongside banks and car makers.",
+   "At the centre of the model are five <mark>business activities</mark>: innovation, operations, marketing, human resource management, and finance and accounting. These activities are surrounded by three layers of context. The <b>strategic</b> level covers management decisions, leadership and ethics. The <b>organizational</b> level covers goals, structure, ownership, size and organizational culture. The <b>environmental</b> level covers the economy, the state, technology, labour, and cultural and institutional frameworks. All of this sits inside the wider context of globalization.",
+   "The key idea is <mark>interaction</mark>: the contexts shape business activities, and business activities shape the contexts back. Two theories support the model. The <b>systems approach</b> sees business as inputs, internal processes and outputs that constantly interact. The <b>contingency approach</b> says there is no single best way to organize; the most successful firms fit their organization to their environment."],
+  terms:[["Business","An organized effort to produce goods and services to meet society's needs; includes not-for-profit organizations."],["Systems approach","Business as a set of interacting parts, taking inputs from the environment and turning them into outputs."],["Contingency approach","The best way to organize depends on the environment; successful firms adapt to prevailing conditions."],["Three levels of context","Strategic, organizational and environmental, all set within globalization."]]},
+ {n:2,part:1,title:"Globalization",pages:"13–57",
+  outline:["What globalization is and when it started","Causes and drivers: factors external and internal to the firm","Global markets and globally organized production (the global factory, global value chains)","The multinational enterprise and the move to transnational firms","Strategic alliances, joint ventures, outsourcing and offshoring","Political and cultural aspects of globalization","Perspectives: globalist, anti-globalization, sceptical, de-globalization"],
+  summary:["<mark>Globalization</mark> is the process through which the world's nations and economies become interlinked economically, politically and culturally. It grew out of international trade and foreign direct investment (FDI), and has been accelerated since about 1980 by information and communications technology (ICT).",
+   "Its growth has not been a straight line. There was a marked slowdown between 1914 and 1950, and again early in the 21st century. Drivers include the spread of capitalism, the search for lower costs, and technological change.",
+   "Production is now organized globally. In the <mark>global factory</mark>, one production process is split across firms in different countries. The <b>multinational enterprise (MNE)</b> is a central player. Many MNEs are moving towards a <b>transnational</b> model that combines global efficiency with responsiveness to local markets. Joint ventures, strategic alliances, outsourcing and offshoring are common ways to enter and operate in foreign markets, each with advantages and risks.",
+   "There are competing views. <b>Globalists</b> see globalization as inevitable and beneficial. The <b>anti-globalization</b> view stresses unequal benefits, the power of big business and environmental damage. <b>Sceptics</b> question how global the process really is. More recently, some writers argue we are seeing <b>de-globalization</b>."],
+  terms:[["Global factory","Production broken into stages carried out by different firms in different countries, mainly to cut costs."],["MNE","A firm operating and managed from bases in several countries, coordinated by a central global strategy."],["TNC","A transnational firm with weaker ties to its home country, aiming for flexibility, responsiveness and innovation."],["Joint venture","Collaboration between firms, usually with shared ownership, for goals such as market entry or technology transfer."]]},
+ {n:3,part:1,title:"The Environment and Business: The Economy and the State",pages:"59–109",
+  outline:["Models for assessing the environment: PEST and its critique","Measuring and comparing national economies (GDP, GNP, per capita)","The changing geopolitics: Japan, the BRIC economies, China and the USA","How business affects the economy and how the economy affects business","The state and business: forms and difficulties of intervention, business as a pressure group","International integration: the WTO and the EU","Brexit"],
+  summary:["Firms analyse their environment with models such as <mark>PEST</mark> (political, economic, social, technological) and SWOT; the Business in Context model is offered as a richer alternative. Economies are measured with indicators such as <b>GDP</b> and <b>GNP</b>, often per head of population.",
+   "The USA remains dominant, but the rapid growth of Japan and the Asian tigers has faded, and forecasts suggest <mark>China</mark> could become the largest economy by about 2040. Economies have generally become more liberal, with more privatization even in formerly state-controlled countries such as China and Russia.",
+   "Market economies differ. Three broad models are identified: <b>Anglo-Saxon</b>, <b>social market</b> and <b>Asian</b>. Business and the economy influence each other, for example through overseas investment.",
+   "The <mark>state</mark> includes government, the civil service, the judiciary, the armed forces and the police. It intervenes in business in many ways, creating both opportunities and constraints, and business lobbies the state in return. International bodies such as the <b>WTO</b> and the <b>EU</b> show a trend towards economic and political integration, though national interests have recently pushed back."],
+  terms:[["PEST","A checklist for scanning the environment: political, economic, social and technological factors."],["The state","Parliament or similar body, government, judiciary, civil service, police and armed forces."],["WTO","Global body that grew out of the GATT and sets rules for trade between member states."],["EU","Union of 27 states (2022) aiming at free movement of goods, finance and people in a single market."]]},
+ {n:4,part:1,title:"The Environment and Business: Technology and Labour",pages:"111–153",
+  outline:["Technology: determinant or choice?","Technology and strategy; ICT and the digital economy","Problems and issues with digital technology","Technology change, jobs and people: automation and job content","Labour: employment trends, flexibility, working hours, the gig economy","Globalization, labour mobility and the COVID-19 pandemic","Trade unions"],
+  summary:["Technology is both a <mark>determinant</mark> of how businesses work and a <mark>product of management choice</mark>. Its main strategic value lies in gaining competitive advantage through higher productivity, better quality and lower costs.",
+   "<b>ICT</b> and the <b>digital economy</b> have transformed businesses, work and customers. E-commerce has had its greatest impact in business-to-business (B2B) transactions.",
+   "Technology changes both the <b>number</b> of jobs and their <b>content</b>. The evidence is mixed: there are job gains and losses, and examples of both up-skilling and de-skilling.",
+   "In labour markets, work has shifted from primary and industrial sectors to services, with growing demand for <mark>flexibility</mark>. The <b>gig economy</b> has grown, with self-employed workers who have no guaranteed hours. Jobs move around the world, but people themselves rarely move country. COVID-19 sped up existing trends in digital technology and patterns of work. <b>Trade unions</b> have protected jobs and pay, but their membership and influence have fallen in most countries."],
+  terms:[["Technology","Applying knowledge and skills to create and use materials, processes and products."],["Digital economy","Business built on ICT, the internet and AI that link people and machines."],["Gig economy","Self-employed work with no guaranteed minimum hours."],["Trade union","Employees organized collectively to protect jobs, improve pay and conditions and influence management."]]},
+ {n:5,part:1,title:"Cultural and Institutional Frameworks",pages:"155–188",
+  outline:["Culture defined","The convergence–diversity debate","Convergence, its implications for managers and its limits","Cultural approaches: Hall, Hofstede, Trompenaars, GLOBE and the World Values Survey","Institutional frameworks: Whitley's business systems; Anglo-Saxon, social market, Asian and Chinese models","Varieties of capitalism: liberal versus coordinated market economies","Japan: convergence and diversity"],
+  summary:["This chapter sets two views against each other. <mark>Convergence</mark> says globalization, technology transfer and multinationals are making countries and business practices more alike. <mark>Diversity</mark> says national culture and institutions keep them different.",
+   "<b>Culture</b> is the set of values, norms and beliefs a society transmits socially. It is studied through writers such as <b>Hall</b> (high- and low-context cultures), <b>Hofstede</b> (dimensions such as power distance, individualism, masculinity and uncertainty avoidance), <b>Trompenaars</b> and the <b>GLOBE</b> project. Culture is a useful but limited tool for explaining business behaviour.",
+   "<b>Institutions</b>, such as the state, the financial system, education and labour relations, also shape business. <mark>Whitley's</mark> national business systems model and the varieties-of-capitalism approach (liberal versus coordinated market economies) explain differences between the <b>Anglo-Saxon</b>, <b>social market</b> and <b>Asian</b> models.",
+   "The chapter ends with Japan since 1945 as a case that shows both convergence and lasting cultural and institutional difference."],
+  terms:[["Convergence","The idea that countries and firms are becoming alike, driven by technology transfer and multinationals."],["Culture","Socially transmitted values, norms and beliefs shown in behaviour, practices and institutions."],["Anglo-Saxon capitalism","Free-market model (USA, UK) where shareholders are the main stakeholders and labour is flexible."],["Uncertainty avoidance","Hofstede's dimension for how uncomfortable a society is with ambiguity and risk."]]},
+ {n:6,part:2,title:"Organizational Aspects of Business",pages:"191–242",
+  outline:["Goals: their nature, development and multiple goals","Structure: influences, types and trends; structure and performance","Ownership: types, ownership and control, the public sector and privatization","Size: small businesses and their value","Organizational and corporate culture"],
+  summary:["The organizational level has five elements: <mark>goals, structure, ownership, size and culture</mark>. They interact with each other and with the environment, strategy and business activities.",
+   "<b>Goals</b> come from a political process of influence, conflict and compromise between interest groups. A firm can have several goals at once, and they may conflict.",
+   "<b>Structure</b> is influenced by strategy, technology, size, environment and culture. The <b>multidivisional</b> form, with business units run as profit centres under a head office, is important for global firms. The link between structure and performance remains unproven.",
+   "<b>Ownership</b> matters because of the <mark>agency problem</mark>: managers (agents) may not act in the interests of shareholders (principals). The chapter also compares public and private sector management and reviews privatization. <b>Size</b> affects structure, market power and relations with the state; small firms make an important economic contribution.",
+   "The book separates <b>organizational culture</b> (shared values that grow from history, technology, people and so on) from <b>corporate culture</b> (a culture deliberately created by top management). It questions how far culture drives performance and whether culture can really be changed."],
+  terms:[["Agency problem","Agents (managers) acting in their own interest rather than in the interest of principals (shareholders)."],["Multidivisional company","Business units run as profit centres, coordinated by a corporate headquarters."],["Privatization","Selling public assets to private ownership, common in the UK in the 1980s and 1990s."],["Corporate culture","A culture deliberately created by management to achieve strategic goals."]]},
+ {n:7,part:2,title:"Management and Leadership",pages:"245–278",
+  outline:["What management is and the manager's right to manage","What managers are supposed to do: models of management and their critique","What managers actually do: reality versus theory","Leadership: definitions and differences from management","Why leadership matters and theories of leadership"],
+  summary:["<mark>Management</mark> is often described as getting things done through other people and pulling everything together to meet organizational and environmental demands. It is hard to define because management work varies so much.",
+   "A manager's <b>legitimacy</b> rests on property rights, the law, different forms of power and an underlying value system.",
+   "Classical models, such as <b>Fayol's</b> principles of management, describe what managers are supposed to do. Studies of what managers <b>actually</b> do, such as <b>Mintzberg's</b> ten managerial roles, show that real work is fragmented and rarely follows these models, though some links to classical ideas remain.",
+   "<mark>Leadership</mark> is about influencing and inspiring people to higher performance, while management focuses on coordination. Leadership matters most in times of rapid change and intense competition. Many leadership theories exist, but most apply only in limited situations. In line with the model, both management and leadership are best understood in their organizational and environmental context."],
+  terms:[["Management","Balancing internal and external influences and coordinating activities and people to achieve goals."],["Leadership","Influencing individuals and groups and inspiring them to higher performance."],["Fayol","French writer whose principles of management describe the classical view of what managers should do."],["Mintzberg","Studied real managers and identified ten roles in three groups: interpersonal, informational and decisional."]]},
+ {n:8,part:2,title:"Strategy",pages:"279–324",
+  outline:["What is strategy?","The strategic process: approaches, contexts, uses and value","Environmental aspects: the general environment and the competitive environment","Organizational aspects: resource analysis, the resource-based view, the value chain, portfolio analysis","Strategic options at business and corporate level","Strategic choice"],
+  summary:["Strategy formation is a <mark>mix of rational analysis and subjective, political decision-making</mark>, shaped by the environment, the organization, management values and negotiation between interest groups. Different approaches may suit a firm at different stages.",
+   "A strategy coordinates activities and focuses resources on chosen objectives, but the link between strategy and performance is hard to prove.",
+   "<b>Environmental analysis</b> of the general and competitive environment (for example with SWOT and Porter's five forces) identifies opportunities and threats; how they are read depends on managers' values and creativity.",
+   "<b>Organizational analysis</b> looks at four kinds of resource: product, physical, financial and people. Tools include <b>core competencies</b>, the <mark>value chain</mark> (primary and support activities) and <mark>portfolio analysis</mark> such as the BCG matrix (stars, cash cows, question marks, dogs).",
+   "Options include related and unrelated <b>diversification</b> and <b>backward or forward integration</b>. Each option should be judged on its <mark>suitability, feasibility and acceptability</mark>."],
+  terms:[["SWOT","Strengths, weaknesses, opportunities and threats: a framework for a firm's current position."],["Value chain","Porter's view of the firm as primary and support activities that build up value for the customer."],["BCG matrix","Portfolio tool sorting products by market share and market growth into stars, cash cows, question marks and dogs."],["Vertical integration","Backward (towards suppliers) or forward (towards distribution and customers) integration."]]},
+ {n:9,part:2,title:"Business Ethics, Sustainability and Corporate Social Responsibility",pages:"325–355",
+  outline:["Defining business ethics, sustainability and CSR","Areas of activity in CSR and stakeholders","Historical development of ethical concerns in business","Why should businesses be socially responsible? Moral, business and strategic arguments","The critical perspective: can business be ethical?","Mechanisms for ethical business and social responsibility"],
+  summary:["<mark>Business ethics</mark> and <mark>CSR</mark> are both about conducting business morally, acting responsibly towards <b>stakeholders</b> and protecting the environment. Business ethics sets the framework; CSR applies it to the firm's relationships with shareholders, employees, customers, suppliers, the community and government.",
+   "Both ideas are complex, because stakeholders have different and sometimes competing needs. Ethics also varies between cultures and over time.",
+   "At the heart of the debate is the nature of business itself, and whether business is the right agent for social responsibility. There is a <b>moral</b> argument, a <b>business</b> argument (ethical business is profitable business) and a <b>strategic</b> argument, plus a <b>critical</b> perspective that doubts business can be truly ethical. The evidence that responsible business is more successful is <mark>weak and contradictory</mark>.",
+   "Firms can choose from many strategies and practices to act responsibly, such as codes of ethics, reporting and stakeholder engagement. Carroll's pyramid of CSR (economic, legal, ethical and philanthropic responsibilities) is one useful framework."],
+  terms:[["Business ethics","Moral standards and choices of right and wrong in business, shaped by individuals, culture, norms and law."],["CSR","Applying ethics to the firm's relationships with stakeholders and the environment."],["Stakeholders","Groups with an interest in the firm: shareholders, employees, customers, suppliers, community, government."],["Carroll's pyramid","Economic, legal, ethical and philanthropic responsibilities of business."]]},
+ {n:10,part:3,title:"Innovation",pages:"359–403",
+  outline:["Invention, innovation and R&D","Types and scope of innovation","Expenditure on R&D","Entrepreneurship","Environmental aspects: the economy, the state, national differences and technology","Organizational aspects: size, structure and culture","Innovation strategies and their constraints"],
+  summary:["<mark>Invention</mark> is creating something new; <mark>innovation</mark> is turning it into something profitable or useful. Innovation can involve products, processes, marketing, organization and management, and can be radical or minor. It matters in services and retail as much as in manufacturing, and is increasingly linked to social value and sustainability.",
+   "The most successful innovations are <b>integrated</b>: product, process, organizational and social change happen together. <b>Entrepreneurs</b> drive innovation in organizations of every size.",
+   "Innovation is seen as the key to productivity, market share, profit and survival, and even to national recovery, though these links are hard to prove. Governments support innovation for economic, political and social reasons, and nations differ through their <b>national systems of innovation</b>.",
+   "Innovation can come from <b>technology–push</b> or <b>demand–pull</b>, and understanding the market is vital. There is no clear link between company size and innovativeness, though very expensive research is concentrated in large firms. Innovative firms build a creative culture, integrate R&D with production and marketing, and often take an <mark>open approach</mark> with partners. Some firms aim to lead; others follow by licensing or copying."],
+  terms:[["Innovation","The process by which inventions and ideas become a business or operational reality."],["Demand–pull vs technology–push","Innovation driven by market demand versus by applying known technologies."],["Tacit knowledge","Undocumented know-how built up in an organization; hard for outsiders to copy."],["Patent","A legal monopoly over an invention, usually for 20 years, in return for full disclosure."]]},
+ {n:11,part:3,title:"Operations",pages:"405–445",
+  outline:["Identifying the operations function: manufacturing and non-manufacturing","Conflicting objectives and links with other functions","Main activities: design of operations systems; planning and control","Operations and the environment: economy, state and technology","Organizational aspects: size and structure","Operations strategies: the product–process matrix and lean production"],
+  summary:["<mark>Operations</mark> is a transformation process that turns inputs such as materials and labour into goods and services. It exists in every kind of organization, not just manufacturing.",
+   "Its main activities are <b>designing</b> the system and <b>controlling</b> it so it runs effectively. The system now covers the whole <b>supply chain</b>, from components to customers.",
+   "The objectives are <mark>quality, dependability, speed, flexibility and cost</mark>. A central problem is reconciling customer satisfaction with efficient use of resources. Traditionally the focus was efficiency; now flexibility and quality matter more.",
+   "Globalization has stretched supply chains and created the global factory. Technology, including digital tools and AI, has transformed both products and processes. Japanese methods have been very influential: <b>JIT</b>, <b>TQM</b> and <mark>lean production</mark>. The most successful operations strategies integrate the whole system, have a clear focus and fit the strategies of other functions."],
+  terms:[["Just-in-time (JIT)","A pull system producing only what is needed when needed, cutting inventory; uses Kanban (Toyota)."],["TQM","A company-wide, long-term approach building quality into every part of the operation."],["Lean production","Toyota-originated system combining JIT, TQM, flexible manufacturing and close supplier links."],["Benchmarking","Improving quality by comparing with and learning from other organizations."]]},
+ {n:12,part:3,title:"Marketing",pages:"447–507",
+  outline:["Definitions and orientations: product, selling and marketing orientations","Market research, segmentation, targeting and positioning","Branding","The 4Ps, relationship marketing and the 7Ps","Buyer behaviour","Environmental aspects: economy, state, consumerism, technology, digital and social media, culture","Organizational and strategic aspects of marketing"],
+  summary:["<mark>Marketing</mark> means understanding customer needs and behaviour and researching markets so goods and services can be developed, priced, promoted and distributed effectively. It applies to consumers and organizations, and can market people, places, ideas and corporate image.",
+   "Thinking has moved from a <b>product orientation</b> (good products sell themselves), to a <b>selling orientation</b> (customers must be persuaded), to a <b>marketing orientation</b> (the customer is sovereign).",
+   "The <mark>marketing mix</mark>, or 4Ps (product, price, promotion, place), is the core of marketing strategy. Firms <b>segment</b> markets, <b>target</b> chosen segments and <b>position</b> products, adjusting the mix for each. <b>Branding</b> is a major source of differentiation.",
+   "Marketing sits at the boundary between the firm and its environment, so economic change, regulation, technology, social trends, globalization and <b>consumerism</b> all affect it. Strategy depends on understanding the market and integrating marketing with other functions. Recently, <mark>digital and social media marketing</mark> have strengthened the central role of the consumer."],
+  terms:[["Marketing mix (4Ps)","Product, price, promotion and place; a classification credited to McCarthy (1960)."],["Segmentation","Dividing the total market into distinct consumer groups."],["Branding","Names, logos and symbols that distinguish a product and build loyalty."],["Consumerism","A social movement that informs consumers and acts as a pressure group for their interests."]]},
+ {n:13,part:3,title:"Human Resource Management",pages:"509–554",
+  outline:["Defining HRM, its activities and how it is performed","Employee resourcing: recruitment, selection, equal opportunities and diversity","Employee development: training, management development, careers, talent","Pay and performance: reward systems and performance management","Employment relations and employee involvement","Environmental and organizational aspects of HRM","HR strategies: planning, resource-based view, high-performance work systems"],
+  summary:["<mark>HRM</mark> emerged in the 1980s, first in the USA, as a more strategic version of personnel management. In large organizations specialists do it, but all managers do some HR work, which can cause conflict. Consultants and outsourcing are increasingly used.",
+   "There are four overlapping activities: <mark>employee resourcing, employee development, pay and performance, and employment relations</mark>.",
+   "<b>Resourcing</b> covers recruitment and selection, where methods should be <b>reliable</b> and <b>valid</b>, and where equal opportunities and diversity management matter. <b>Development</b> covers training, with a recent focus on management and leadership. <b>Pay</b> combines basic pay, pay for performance and benefits. <b>Performance management</b> links individual development to strategic goals.",
+   "More than most functions, HRM is shaped by its economic, political, legal, social and cultural environment. Tensions with line managers and questions about HR's status are common. HR strategies follow the firm's strategy, but their contribution to success is hard to demonstrate. Ulrich's idea of HR as a <b>business partner</b> is a key reference."],
+  terms:[["HRM","Strategic, integrated management of people, replacing traditional personnel management."],["Employee resourcing","Meeting the demand for labour through recruitment and selection."],["Diversity management","A proactive approach focused on individuals, beyond legal equal-opportunity compliance."],["Performance management","Appraisal and related tools linking individual contribution to organizational performance."]]},
+ {n:14,part:3,title:"Finance and Accounting",pages:"555–588",
+  outline:["Principles of accounting","Financial management: share capital, loan capital and other financing","Management accounting: budgeting, costing, investment appraisal, cash flow","Financial reporting: balance sheet, profit and loss, cash flow statements, ratio analysis","Accounting and corporate governance","Environmental aspects: economy, culture, harmonization","Organizational and strategic aspects: firm size, transfer pricing, limitations of accounting"],
+  summary:["The finance and accounting function has three parts: <mark>financial management, management accounting and financial reporting</mark>.",
+   "<b>Financial management</b> funds the business. Sources are share capital, loan capital, state finance and internally generated funds; reinvested profit appears to be the <mark>most significant source</mark> in the UK and elsewhere.",
+   "<b>Management accounting</b> supports planning and control: budgets, cost analysis, investment appraisal (for example NPV), cash-flow management and strategic decisions.",
+   "<b>Financial reporting</b> produces the balance sheet, profit and loss account and cash flow statement within a legal framework. Issues include whether accounts give a true and fair view and how much to disclose. Ratios help interpret them.",
+   "The function is shaped by its environment: state regulation, inflation, currency changes and national culture, so practices still differ between countries despite harmonization. <b>Corporate governance</b> has become increasingly important. In large firms, cost allocation and <b>transfer pricing</b> matter, especially for multinationals. Accounting information is vital for decisions, but it is partly subjective and can be used to justify political choices."],
+  terms:[["Share capital","Funds raised by issuing shares; holders get part ownership and dividends."],["Loan capital","Borrowed funds such as bank loans, debentures and overdrafts; interest and repayment are required."],["Balance sheet","Statement of assets and liabilities at the end of the accounting year."],["Transfer pricing","Prices charged between units of the same firm; a useful tool for multinationals."]]}
+];
+
+/* Question types: tf (true/false), mcq (a–d), gap (fill the gap: ____ marks the gap) */
+const Q = [
+ {ch:1,type:"tf",q:"In the Business in Context model, business activities are shaped by their contexts but have no influence on them.",a:false,why:"The model stresses two-way interaction: contexts shape activities and activities shape contexts."},
+ {ch:1,type:"mcq",q:"Which of these is NOT one of the five business activities in the model?",o:["Innovation","Operations","Logistics","Marketing"],a:2,why:"The five are innovation, operations, marketing, HRM, and finance and accounting."},
+ {ch:1,type:"gap",q:"The ____ approach views business as inputs from the environment, internal processes and outputs.",acc:["systems","system"],why:"This is the systems approach."},
+ {ch:1,type:"mcq",q:"According to the contingency approach, the most successful businesses are those that…",o:["follow one universal set of best practices","are organized to take advantage of their environment","grow as large as possible","avoid contact with the state"],a:1,why:"Contingency theory says there is no single best way; fit with the environment matters."},
+ {ch:1,type:"tf",q:"The book treats schools, hospitals and charities as businesses.",a:true,why:"Business is defined broadly to include not-for-profit organizations."},
+ {ch:1,type:"mcq",q:"Which three levels of context surround business activities in the model?",o:["Local, national, international","Strategic, organizational, environmental","Political, economic, social","Input, process, output"],a:1,why:"Strategic, organizational and environmental, all set within globalization."},
+
+ {ch:2,type:"tf",q:"The growth of globalization has been steady and uninterrupted since the 19th century.",a:false,why:"There was a marked slowdown between 1914 and 1950, and again early in the 21st century."},
+ {ch:2,type:"mcq",q:"Which perspective emphasizes the uneven distribution of benefits, the power of big business and environmental damage?",o:["Globalist","Anti-globalization","Sceptical","Transnational"],a:1,why:"These are the core criticisms of the anti-globalization lobby."},
+ {ch:2,type:"gap",q:"Splitting a production process across firms in different countries is known as the global ____.",acc:["factory"],why:"The global factory disaggregates production, mainly to reduce costs."},
+ {ch:2,type:"mcq",q:"Compared with a traditional MNE, a transnational corporation's primary objectives are…",o:["control and cost","flexibility, responsiveness and innovation","exporting from the home country","avoiding joint ventures"],a:1,why:"In a TNC, flexibility, responsiveness and innovation replace control and cost."},
+ {ch:2,type:"tf",q:"Joint ventures usually involve some element of shared ownership.",a:true,why:"For example, two firms setting up a new company together."},
+ {ch:2,type:"mcq",q:"Which development has driven the rapid growth of globalization since about 1980?",o:["The gold standard","ICT","The 1914–1950 trade slowdown","Rising tariffs"],a:1,why:"Information and communications technology accelerated globalization."},
+
+ {ch:3,type:"mcq",q:"What does PEST stand for?",o:["Price, economy, society, trade","Political, economic, social, technological","Planning, execution, strategy, tactics","Political, environmental, structural, technical"],a:1,why:"PEST: political, economic, social and technological factors."},
+ {ch:3,type:"tf",q:"In the book's definition, the state includes the judiciary, civil service, armed forces and police.",a:true,why:"The state is broader than the government alone."},
+ {ch:3,type:"gap",q:"The WTO emerged from the ____.",acc:["gatt","general agreement on tariffs and trade"],why:"The GATT was replaced by the WTO."},
+ {ch:3,type:"mcq",q:"Which three broad groups of market economies does the book identify?",o:["Anglo-Saxon, social market, Asian","Communist, socialist, capitalist","Developed, emerging, frontier","EU, NAFTA, ASEAN"],a:0,why:"Anglo-Saxon, social market and Asian models."},
+ {ch:3,type:"tf",q:"Predictions discussed in the book indicate India will be the world's largest economy by 2040.",a:false,why:"The predictions point to China."},
+ {ch:3,type:"mcq",q:"GDP per capita is calculated by…",o:["dividing GDP by the population","adding exports to GDP","subtracting imports from GNP","dividing GNP by the number of firms"],a:0,why:"Per capita means per head of population."},
+
+ {ch:4,type:"tf",q:"The book argues that technology simply determines how businesses operate, leaving managers no choice.",a:false,why:"Technology is both a determinant and a product of management choice."},
+ {ch:4,type:"gap",q:"Work on self-employed contracts with no guaranteed hours is called the ____ economy.",acc:["gig"],why:"The gig economy has grown in many countries."},
+ {ch:4,type:"mcq",q:"Where has the impact of e-commerce been greatest?",o:["B2C","B2B","Government services","Charities"],a:1,why:"Business-to-business transactions."},
+ {ch:4,type:"tf",q:"Trade union membership has increased in most countries.",a:false,why:"Membership and influence have declined in most countries."},
+ {ch:4,type:"mcq",q:"Labour mobility in the sense of people moving to another country…",o:["has grown faster than trade","remains low","is the main driver of globalization","was ended by COVID-19"],a:1,why:"Jobs move around the world more than people do."},
+ {ch:4,type:"mcq",q:"What was the main effect of the COVID-19 pandemic on technology and work?",o:["It reversed digitalization","It accelerated existing trends","It had no effect","It ended remote work"],a:1,why:"Much of the change was an acceleration of existing trends."},
+
+ {ch:5,type:"mcq",q:"The primary drivers of convergence are…",o:["trade unions and the state","technology transfer and multinational firms","religion and language","small firms and charities"],a:1,why:"Technology transfer and the activities of multinationals."},
+ {ch:5,type:"tf",q:"In Hofstede's survey, the USA had the highest individualism rating of any country.",a:true,why:"The USA scored highest on individualism."},
+ {ch:5,type:"gap",q:"Hofstede's dimension measuring discomfort with ambiguity is uncertainty ____.",acc:["avoidance"],why:"Uncertainty avoidance."},
+ {ch:5,type:"mcq",q:"In Anglo-Saxon capitalism, the main stakeholders are seen as…",o:["employees","the state","shareholders","banks"],a:2,why:"Shareholders are the main stakeholders in the liberal market model."},
+ {ch:5,type:"mcq",q:"The varieties of capitalism approach contrasts…",o:["liberal and coordinated market economies","East and West","manufacturing and services","public and private sectors"],a:0,why:"Liberal market economies versus coordinated market economies."},
+ {ch:5,type:"tf",q:"The national business systems model is associated with Whitley.",a:true,why:"Whitley's model explains differences in business systems between countries."},
+
+ {ch:6,type:"mcq",q:"Which is NOT one of the organizational elements in the model?",o:["Goals","Structure","Pricing","Ownership"],a:2,why:"The elements are goals, structure, ownership, size and culture."},
+ {ch:6,type:"gap",q:"In the agency problem, managers are the ____ of shareholders.",acc:["agents","agent"],why:"Shareholders are principals; managers are their agents."},
+ {ch:6,type:"tf",q:"The evidence linking organization structure to performance is conclusive.",a:false,why:"The book says the evidence is inconclusive."},
+ {ch:6,type:"mcq",q:"In a multidivisional company, business units…",o:["have no headquarters","operate as profit centres coordinated by a corporate HQ","must all do the same activity","are owned by different shareholders"],a:1,why:"Profit centres coordinated centrally."},
+ {ch:6,type:"tf",q:"The book defines corporate culture as a culture deliberately created by management for strategic ends.",a:true,why:"Organizational culture grows naturally; corporate culture is designed by management."},
+ {ch:6,type:"mcq",q:"Privatization was especially prevalent in the UK during…",o:["the 1940s and 1950s","the 1960s and 1970s","the 1980s and 1990s","the 2010s"],a:2,why:"Driven by belief in free markets in the 1980s and 1990s."},
+
+ {ch:7,type:"mcq",q:"A common short definition of management is…",o:["inspiring people to exceed expectations","getting things done through other people","owning the business","designing products"],a:1,why:"Management is getting things done through other people."},
+ {ch:7,type:"tf",q:"Leadership focuses on coordination, while management focuses on inspiring people.",a:false,why:"It's the other way round."},
+ {ch:7,type:"mcq",q:"Which French writer is associated with the classical principles of management?",o:["Weber","Fayol","Taylor","Mintzberg"],a:1,why:"Henri Fayol."},
+ {ch:7,type:"gap",q:"Studying five senior executives, ____ identified ten managerial roles in three categories.",acc:["mintzberg","henry mintzberg"],why:"Mintzberg (1973): interpersonal, informational and decisional roles."},
+ {ch:7,type:"tf",q:"The chapter concludes that management and leadership are best viewed within their organizational and environmental context.",a:true,why:"This follows the Business in Context model."},
+ {ch:7,type:"mcq",q:"A manager's legitimacy is based on…",o:["age only","property rights, laws, power and values","popularity with employees","technical skill only"],a:1,why:"Several sources together give managers their right to manage."},
+
+ {ch:8,type:"gap",q:"SWOT stands for strengths, weaknesses, opportunities and ____.",acc:["threats","threat"],why:"Threats."},
+ {ch:8,type:"mcq",q:"Porter's value chain divides activities into…",o:["primary and support","fixed and variable","internal and external","core and peripheral"],a:0,why:"Primary and support activities."},
+ {ch:8,type:"mcq",q:"In the BCG matrix, a product with high market share in a low-growth market is a…",o:["star","question mark","cash cow","dog"],a:2,why:"Cash cows fund question marks and stars."},
+ {ch:8,type:"tf",q:"Backward integration means gaining control of distribution and retailing.",a:false,why:"That is forward integration; backward means moving towards suppliers."},
+ {ch:8,type:"mcq",q:"Strategic options should be assessed on…",o:["suitability, feasibility and acceptability","price, place and product","size, speed and scope","cost alone"],a:0,why:"Suitability, feasibility and acceptability to stakeholders."},
+ {ch:8,type:"tf",q:"A hotel chain buying a newspaper is an example of related diversification.",a:false,why:"It is unrelated diversification."},
+
+ {ch:9,type:"mcq",q:"CSR is concerned primarily with the firm's relationships with its…",o:["competitors","stakeholders","auditors","patents"],a:1,why:"Shareholders, employees, customers, suppliers, community and government."},
+ {ch:9,type:"tf",q:"The evidence that ethical business is more profitable is strong and consistent.",a:false,why:"The book calls it weak and contradictory."},
+ {ch:9,type:"gap",q:"Business ethics sets the framework for the operation of ____.",acc:["csr","corporate social responsibility"],why:"CSR is the application of business ethics."},
+ {ch:9,type:"mcq",q:"The argument that firms should be responsible simply because it is right is the…",o:["business argument","strategic argument","moral argument","critical perspective"],a:2,why:"The moral argument."},
+ {ch:9,type:"tf",q:"Standards of business ethics vary between cultures and over time.",a:true,why:"Ethics depends on individual values, culture, norms and law."},
+ {ch:9,type:"mcq",q:"Carroll's pyramid of CSR includes economic, legal, ethical and…",o:["philanthropic responsibilities","marketing responsibilities","technical responsibilities","political responsibilities"],a:0,why:"Philanthropic (discretionary) responsibilities sit at the top."},
+
+ {ch:10,type:"gap",q:"____ is the discovery or creation of a product or process; innovation turns it into a business reality.",acc:["invention"],why:"Invention versus innovation."},
+ {ch:10,type:"mcq",q:"In most countries a patent gives a monopoly for…",o:["5 years","10 years","20 years","50 years"],a:2,why:"Usually 20 years."},
+ {ch:10,type:"tf",q:"There is clear evidence that larger firms are always more innovative.",a:false,why:"No clear link, though very expensive research is concentrated in large firms."},
+ {ch:10,type:"mcq",q:"Demand–pull innovation comes from…",o:["known technologies looking for uses","market demand","government decree","copying competitors"],a:1,why:"Demand–pull is driven by the market."},
+ {ch:10,type:"mcq",q:"Tacit knowledge is…",o:["published in manuals","rarely documented and hard for outsiders to copy","the same in every firm","owned by the state"],a:1,why:"That's why it is a source of competitive advantage."},
+ {ch:10,type:"tf",q:"More innovative firms tend to take an open approach, with partnerships and information exchange.",a:true,why:"Open innovation is associated with more innovative firms."},
+
+ {ch:11,type:"mcq",q:"Which is NOT one of the objectives of operations management?",o:["Quality","Dependability","Branding","Flexibility"],a:2,why:"The objectives are quality, dependability, speed, flexibility and cost."},
+ {ch:11,type:"gap",q:"Because JIT starts from customer demand and works backwards, it is called a ____-through system.",acc:["pull"],why:"A pull-through system."},
+ {ch:11,type:"mcq",q:"The Kanban technique was developed by…",o:["Ford","Toyota","General Motors","Sony"],a:1,why:"Toyota."},
+ {ch:11,type:"tf",q:"The operations function exists only in manufacturing.",a:false,why:"It exists in all kinds of organizations, including services."},
+ {ch:11,type:"mcq",q:"Benchmarking means…",o:["setting prices","improving quality by comparing with other organizations","measuring staff height","cutting all costs equally"],a:1,why:"Learning from the practices of others."},
+ {ch:11,type:"tf",q:"Lean production integrates JIT and TQM.",a:true,why:"Along with flexible manufacturing and close supplier links."},
+
+ {ch:12,type:"mcq",q:"The 4Ps classification is credited to…",o:["Kotler (1983)","Drucker (1954)","McCarthy (1960)","Porter (1985)"],a:2,why:"McCarthy (1960)."},
+ {ch:12,type:"mcq",q:"The view that good-quality goods will sell themselves is the…",o:["selling orientation","marketing orientation","product orientation","social orientation"],a:2,why:"Product orientation, dominant until the 1950s."},
+ {ch:12,type:"gap",q:"Breaking the total market into distinct consumer groups is called ____.",acc:["segmentation","market segmentation"],why:"Segmentation, followed by targeting and positioning."},
+ {ch:12,type:"tf",q:"Consumerism is a social movement that informs consumers and acts as a pressure group.",a:true,why:"Consumer groups act as watchdogs."},
+ {ch:12,type:"tf",q:"Drucker claimed marketing is a narrow, specialized activity.",a:false,why:"He argued marketing encompasses all the firm's activities."},
+ {ch:12,type:"mcq",q:"Social media marketing shifts the marketing focus towards…",o:["the organization","the consumer","the state","suppliers"],a:1,why:"Consumers share opinions with each other."},
+
+ {ch:13,type:"mcq",q:"HRM emerged as a concept…",o:["in the 1950s in Japan","in the 1980s in the USA","in the 1990s in Germany","in the 2000s in China"],a:1,why:"1980s, initially in the USA."},
+ {ch:13,type:"gap",q:"Recruitment and selection methods should be reliable and ____.",acc:["valid"],why:"Reliability and validity."},
+ {ch:13,type:"mcq",q:"Which is NOT one of the four HRM activities in the book?",o:["Employee resourcing","Employee development","Product design","Employment relations"],a:2,why:"The fourth is pay and performance."},
+ {ch:13,type:"tf",q:"Diversity management is more proactive than equal opportunities and focuses on individuals rather than groups.",a:true,why:"That is how the book distinguishes them."},
+ {ch:13,type:"mcq",q:"Ulrich is known for describing HR as a…",o:["cost centre","business partner","trade union","legal department"],a:1,why:"HR as a business partner."},
+ {ch:13,type:"tf",q:"It is easy to prove that HR strategies contribute to organizational success.",a:false,why:"Their contribution is difficult to demonstrate."},
+
+ {ch:14,type:"mcq",q:"The three parts of the finance and accounting function are…",o:["auditing, tax, payroll","financial management, management accounting, financial reporting","budgets, shares, loans","assets, liabilities, equity"],a:1,why:"Financial management, management accounting and financial reporting."},
+ {ch:14,type:"tf",q:"The book says share capital is the most significant source of finance for UK firms.",a:false,why:"Internally generated funds (reinvested profit) appear most significant."},
+ {ch:14,type:"gap",q:"A common investment appraisal technique is net present ____ (NPV).",acc:["value"],why:"Net present value."},
+ {ch:14,type:"mcq",q:"A balance sheet shows…",o:["profit over a period","assets and liabilities at the end of the accounting year","cash flows only","share prices"],a:1,why:"A snapshot of assets and liabilities."},
+ {ch:14,type:"tf",q:"A firm with a healthy order book can still fail because of poor cash flow.",a:true,why:"Without cash it cannot pay its bills."},
+ {ch:14,type:"mcq",q:"Transfer pricing is a particularly useful tool for…",o:["sole traders","charities","multinational corporations","trade unions"],a:2,why:"Multinationals price transfers between their units across countries."}
+];
+
+/* ---------------- State ---------------- */
+const S = {view:"home", ch:1, access:"checking", lockReason:"", uid:null, isOwner:false, member:null,
+  exam:null, best:{}, tutorOpen:false, chat:[], busy:false, newCode:null, adminMsg:"", gateMsg:null, gateBusy:false};
+let db=null, user=null, sample=null;
+let ownerCodes=[], members=[], invites={};
+const binding=new Set();
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const unlocked=()=>S.access==="owner"||S.access==="member";
+const chOf=n=>CH.find(c=>c.n===n);
+
+/* ---------------- Access codes ---------------- */
+const ALPH="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+function newCodeStr(){const b=new Uint8Array(8);crypto.getRandomValues(b);let s="";for(const x of b)s+=ALPH[x%ALPH.length];return "PMB-"+s.slice(0,4)+"-"+s.slice(4)}
+function normCode(c){return String(c).toUpperCase().replace(/[^A-Z0-9]/g,"")}
+async function hashCode(c){const d=await crypto.subtle.digest("SHA-256",new TextEncoder().encode("pmb-study-v1:"+normCode(c)));return [...new Uint8Array(d)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+function earliest(list){return list.slice().sort((a,b)=>(a.claimedAt||0)-(b.claimedAt||0)||(a.id<b.id?-1:1))[0]}
+
+async function verifyMember(uid){
+  const me=await db.doc("members/"+uid).get();
+  if(!me.exists) return {ok:false,reason:""};
+  const m=me.data(), h=m.codeHash;
+  const inv=await db.doc("invites/"+h).get();
+  if(!inv.exists) return {ok:false,reason:"Your access code has been withdrawn. Ask the course owner for a new one."};
+  const bound=inv.data().boundTo;
+  if(bound) return bound===uid?{ok:true,member:m}:{ok:false,reason:"This access code belongs to someone else."};
+  const qs=await db.collection("members").where("codeHash","==",h).get();
+  const first=earliest(qs.docs.map(d=>({id:d.id,...d.data()})));
+  return first&&first.id===uid?{ok:true,member:m}:{ok:false,reason:"This access code was already used by someone else."};
+}
+
+async function redeem(code,name){
+  S.gateMsg=null;
+  if(normCode(code).length<11){S.gateMsg={k:"err",t:"Enter the full code, for example PMB-7KQ2-XM4D."};return render()}
+  if(!name.trim()){S.gateMsg={k:"err",t:"Enter your name so the course owner knows who you are."};return render()}
+  S.gateBusy=true;render();
+  try{
+    const h=await hashCode(code);
+    const inv=await db.doc("invites/"+h).get();
+    if(!inv.exists){S.gateMsg={k:"err",t:"That code isn't valid. Check for typos, or ask the course owner for a new one."};return}
+    const b=inv.data().boundTo;
+    if(b&&b!==S.uid){S.gateMsg={k:"err",t:"That code has already been used by another person. Each code works for one person only."};return}
+    const qs=await db.collection("members").where("codeHash","==",h).get();
+    if(qs.docs.some(d=>d.id!==S.uid)){S.gateMsg={k:"err",t:"That code has already been used by another person. Each code works for one person only."};return}
+    await db.doc("members/"+S.uid).set({codeHash:h,name:name.trim().slice(0,60),claimedAt:Date.now()});
+    const v=await verifyMember(S.uid);
+    if(v.ok){S.access="member";S.member=v.member;S.view="home";loadProgress()}
+    else{await db.doc("members/"+S.uid).delete().catch(()=>{});S.gateMsg={k:"err",t:v.reason||"That code is already in use."}}
+  }catch(e){
+    S.gateMsg={k:"err",t:(e&&(e.code==="permission_denied"||e.code==="invalid_argument"))?"Your access level on this page doesn't allow creating an account. Ask the course owner to share the page with you as a Contributor.":"Something went wrong while checking the code. Try again in a moment."};
+  }finally{S.gateBusy=false;render()}
+}
+
+/* owner side */
+async function loadOwner(){
+  try{const s=await db.doc("data/users/"+S.uid+"/codes").get();ownerCodes=s.exists?(s.data().list||[]):[]}catch(e){ownerCodes=[]}
+  db.collection("members").onSnapshot(qs=>{members=qs.docs.map(d=>({id:d.id,...d.data()}));bindClaims();if(S.view==="admin")render()},()=>{});
+  db.collection("invites").onSnapshot(qs=>{invites={};qs.docs.forEach(d=>invites[d.id]=d.data());bindClaims();if(S.view==="admin")render()},()=>{});
+  render();
+}
+async function saveOwnerCodes(){await db.doc("data/users/"+S.uid+"/codes").set({list:ownerCodes})}
+async function bindClaims(){
+  for(const h of Object.keys(invites)){
+    if(invites[h].boundTo||binding.has(h)) continue;
+    const cl=members.filter(m=>m.codeHash===h); if(!cl.length) continue;
+    binding.add(h);
+    try{await db.doc("invites/"+h).update({boundTo:earliest(cl).id})}catch(e){binding.delete(h)}
+  }
+}
+async function createCode(label){
+  const code=newCodeStr(), h=await hashCode(code);
+  try{
+    await db.doc("invites/"+h).set({course:"PMB",createdAt:Date.now()});
+    ownerCodes.unshift({code,hash:h,label:label.trim().slice(0,60)||"Unnamed student",createdAt:Date.now(),revoked:false});
+    await saveOwnerCodes();
+    S.newCode=code;S.adminMsg="";
+  }catch(e){S.adminMsg="The code couldn't be saved. Try again."}
+  render();
+}
+async function revokeCode(h){
+  const c=ownerCodes.find(x=>x.hash===h); if(!c) return;
+  try{
+    await db.doc("invites/"+h).delete();
+    for(const m of members.filter(m=>m.codeHash===h)) await db.doc("members/"+m.id).delete().catch(()=>{});
+    c.revoked=true; await saveOwnerCodes(); S.adminMsg="Access withdrawn for "+c.label+".";
+  }catch(e){S.adminMsg="Couldn't withdraw that code. Try again."}
+  render();
+}
+
+/* progress */
+async function loadProgress(){
+  if(!S.uid) return;
+  try{const s=await db.doc("data/users/"+S.uid+"/progress").get();S.best=s.exists?(s.data().best||{}):{}}catch(e){}
+  render();
+}
+async function saveBest(key,pct){
+  if((S.best[key]??-1)>=pct) return;
+  S.best={...S.best,[key]:pct};
+  try{await db.doc("data/users/"+S.uid+"/progress").set({best:S.best})}catch(e){}
+}
+
+/* ---------------- Rendering ---------------- */
+function renderBar(){
+  const tabs=unlocked()?[["home","Courses"],["book","Book"],["summaries","Summaries"],["exam","Exam practice"]].concat(S.isOwner?[["admin","Access codes"]]:[]):[];
+  const who=S.access==="owner"?"Course owner":S.access==="member"?esc(S.member?.name||"Student"):"";
+  $("#bar").innerHTML=`<button class="brand" data-go="home"><b>PMB Study Room</b><span>Business in Context · 8e</span></button>
+   <nav class="tabs" aria-label="Sections">${tabs.map(([v,l])=>`<button class="tab" data-go="${v}" ${S.view===v?'aria-current="page"':""}>${l}</button>`).join("")}</nav>
+   <span class="spacer"></span>${who?`<span class="who"><span class="dot"></span>${who}</span>`:""}`;
+}
+
+function chapterRail(view){
+  let html="",last=-1;
+  for(const c of CH){
+    if(c.part!==last){html+=`<div class="part">${esc(PARTS[c.part])}</div>`;last=c.part}
+    const b=S.best["ch"+c.n];
+    html+=`<button class="chbtn" data-ch="${c.n}" aria-current="${S.ch===c.n}"><span class="n">${String(c.n).padStart(2,"0")}</span><span class="t">${esc(c.title)}</span><span class="s">${b!=null?b+"%":""}</span></button>`;
+  }
+  const sel=`<select class="chselect" id="chsel" aria-label="Chapter">${CH.map(c=>`<option value="${c.n}" ${S.ch===c.n?"selected":""}>${c.n}. ${esc(c.title)}</option>`).join("")}</select>`;
+  return `<aside class="rail">${html}</aside>${sel}`;
+}
+
+function viewGate(){
+  const checking=S.access==="checking", nocap=S.access==="nocap";
+  const card=checking?`<div class="gatecard"><div class="eyebrow">Sign in</div><h2>Checking your access…</h2><p class="muted" style="margin:0">One moment while we look up your account.</p></div>`
+   :nocap?`<div class="gatecard"><div class="eyebrow">Sign in</div><h2>Open this page while signed in</h2><p class="muted" style="margin:0">Your account is linked to your Claude sign-in. Open the link you were given while signed in to Claude, then enter your access code.</p></div>`
+   :`<form class="gatecard" id="gateform" novalidate>
+      <div class="eyebrow">Create your account</div>
+      <h2>Enter your access code</h2>
+      <p class="muted" style="margin:0">Your course owner gave you a personal code. It works once, for one person: after you use it, it's tied to your account and nobody else can use it.</p>
+      ${S.lockReason?`<div class="msg err">${esc(S.lockReason)}</div>`:""}
+      <div class="field"><label for="g-code">Access code</label><input id="g-code" class="codein" autocomplete="off" spellcheck="false" placeholder="PMB-XXXX-XXXX"></div>
+      <div class="field"><label for="g-name">Your name</label><input id="g-name" autocomplete="name" placeholder="First and last name"></div>
+      ${S.gateMsg?`<div class="msg ${S.gateMsg.k}">${esc(S.gateMsg.t)}</div>`:""}
+      <button class="btn primary" ${S.gateBusy?"disabled":""}>${S.gateBusy?"Checking code…":"Create account"}</button>
+    </form>`;
+  return `<div class="gate">
+    <div><div class="eyebrow">PMB · Principles of Management & Business</div>
+      <h1 style="margin-top:8px">Everything for the PMB exam, in one place.</h1>
+      <p class="lede">Chapter guides for <i>Business in Context</i>, short summaries of all 14 chapters, an AI tutor that knows the course, and exam practice with true/false, multiple-choice and fill-the-gap questions.</p>
+      <ul class="toc-preview">${CH.slice(0,6).map(c=>`<li><span>${String(c.n).padStart(2,"0")}</span>${esc(c.title)}</li>`).join("")}<li><span>…</span>and 8 more chapters</li></ul>
+    </div>${card}</div>`;
+}
+
+function viewHome(){
+  const done=Object.keys(S.best).filter(k=>k.startsWith("ch")).length;
+  return `<div class="eyebrow">Your courses</div><h1 style="margin-top:6px">Welcome${S.member?.name?", "+esc(S.member.name.split(" ")[0]):""}.</h1>
+  <p class="lede">Pick a course to open its book guide, chapter summaries and exam practice. The tutor button in the corner works on every page.</p>
+  <div class="courses">
+    <button class="course" data-go="summaries"><span class="eyebrow">Course</span><span class="code">PMB</span>
+      <span style="font-family:var(--body);font-size:16px">${esc(BOOK.title)}</span>
+      <span class="muted" style="font-size:13px">${esc(BOOK.authors)} · ${BOOK.edition}</span>
+      <span class="chips"><span class="chip">14 chapters</span><span class="chip">${Q.length} practice questions</span><span class="chip">${done}/14 chapters practised</span></span></button>
+    <div class="course soon"><span class="eyebrow">Next course</span><span class="code">+</span><span>More courses can be added here.</span></div>
+  </div>`;
+}
+
+function viewBook(){
+  const c=chOf(S.ch);
+  return `<div class="notice"><p><b>The book:</b> ${esc(BOOK.title)}, ${BOOK.edition}. ${esc(BOOK.authors)}. ${esc(BOOK.publisher)}. <span class="mono">ISBN ${BOOK.isbn}</span></p>
+   <p class="muted">The full text is copyrighted, so it isn't shared here. Use your own copy or the library's. This guide maps each chapter so you know what to read and where.</p></div>
+  <div class="desk">${chapterRail("book")}
+   <article class="sheet"><div class="eyebrow">${esc(PARTS[c.part])}</div>
+    <h1 style="margin-top:6px">${c.n}. ${esc(c.title)}</h1>
+    <div class="meta"><span class="mono">Book pages ${c.pages}</span><span>${c.outline.length} main sections</span></div>
+    <h3>What the chapter covers</h3>
+    <ol class="outline">${c.outline.map((o,i)=>`<li><span class="k">${c.n}.${i+1}</span><span>${esc(o)}</span></li>`).join("")}</ol>
+    <div class="section-gap"><h3>Key terms to look out for</h3>
+     <div class="terms" style="margin-top:12px">${c.terms.map(t=>`<div class="term"><b>${esc(t[0])}</b><span>${esc(t[1])}</span></div>`).join("")}</div></div>
+    <div class="actions"><button class="btn primary" data-go="summaries">Read the summary</button><button class="btn" data-exam="${c.n}">Practise this chapter</button><button class="btn" data-ask="Give me a study plan for Chapter ${c.n}, ${c.title}: what should I focus on for the exam?">Ask the tutor about it</button></div>
+   </article></div>`;
+}
+
+function viewSummaries(){
+  const c=chOf(S.ch);
+  return `<div class="desk">${chapterRail("summaries")}
+   <article class="sheet"><div class="eyebrow">${esc(PARTS[c.part])} · Summary</div>
+    <h1 style="margin-top:6px">${c.n}. ${esc(c.title)}</h1>
+    <div class="meta"><span class="mono">Book pages ${c.pages}</span><span>About ${Math.max(1,Math.round(c.summary.join(" ").split(/\s+/).length/200))} min read</span></div>
+    <div class="reading">${c.summary.map(p=>`<p>${p}</p>`).join("")}</div>
+    <div class="section-gap"><h3>Key terms</h3>
+     <div class="terms" style="margin-top:12px">${c.terms.map(t=>`<div class="term"><b>${esc(t[0])}</b><span>${esc(t[1])}</span></div>`).join("")}</div></div>
+    <div class="actions"><button class="btn primary" data-exam="${c.n}">Test yourself on Chapter ${c.n}</button>
+     <button class="btn" data-ask="Explain Chapter ${c.n} (${c.title}) to me in simple terms with one real-world example.">Explain it more simply</button>
+     ${c.n<14?`<button class="btn" data-ch="${c.n+1}">Next chapter →</button>`:""}</div>
+   </article></div>`;
+}
+
+function viewExam(){
+  const E=S.exam;
+  if(!E) return `<div class="eyebrow">Exam practice</div><h1 style="margin-top:6px">Practise like the real test.</h1>
+   <p class="lede">Questions come in three formats: true or false, multiple choice (a, b, c, d) and fill the gap. You get feedback and an explanation after each answer. Your best score per chapter is saved.</p>
+   <div class="examgrid">
+    <button class="pick all" data-exam="0"><b>Mixed mock test</b><span class="muted">15 random questions from all chapters</span><span class="best">${S.best.all!=null?"Best: "+S.best.all+"%":"Not tried yet"}</span></button>
+    ${CH.map(c=>`<button class="pick" data-exam="${c.n}"><b>${c.n}. ${esc(c.title)}</b><span class="muted">${Q.filter(q=>q.ch===c.n).length} questions</span><span class="best">${S.best["ch"+c.n]!=null?"Best: "+S.best["ch"+c.n]+"%":""}</span></button>`).join("")}
+   </div>`;
+  if(E.done){
+    const right=E.log.filter(x=>x.ok).length, pct=Math.round(right/E.items.length*100);
+    return `<div class="sheet"><div class="eyebrow">${E.ch?"Chapter "+E.ch:"Mixed mock test"} · Result</div>
+     <div style="display:flex;gap:24px;align-items:end;flex-wrap:wrap;margin-top:10px"><span class="score">${pct}%</span><span class="muted" style="padding-bottom:10px">${right} of ${E.items.length} correct</span></div>
+     <ul class="review">${E.items.map((q,i)=>`<li><span class="${E.log[i].ok?"ok":"no"}">${E.log[i].ok?"✓":"✗"}</span><span>${esc(q.q.replace("____","___"))}<br><span class="muted">Answer: ${esc(answerText(q))}</span></span></li>`).join("")}</ul>
+     <div class="actions"><button class="btn primary" data-exam="${E.ch}">Try again</button><button class="btn" data-endexam="1">Choose another test</button>
+     ${E.log.some(x=>!x.ok)?`<button class="btn" data-ask="${esc("I got these wrong in a PMB practice test, please explain each one: "+E.items.filter((q,i)=>!E.log[i].ok).map(q=>q.q+" (correct: "+answerText(q)+")").join(" | "))}">Explain my mistakes</button>`:""}</div></div>`;
+  }
+  const q=E.items[E.i], ans=E.log[E.i], labels={tf:"True or false",mcq:"Multiple choice",gap:"Fill the gap"};
+  let body="";
+  if(q.type==="tf"){
+    body=`<div class="tf">${[true,false].map(v=>`<button class="opt ${ans?(v===q.a?"right":(ans.pick===v?"wrong":"")):""}" data-pick="${v}" ${ans?"disabled":""}>${v?"True":"False"}</button>`).join("")}</div>`;
+  }else if(q.type==="mcq"){
+    body=`<div class="opts">${q.o.map((o,k)=>`<button class="opt ${ans?(k===q.a?"right":(ans.pick===k?"wrong":"")):""}" data-pick="${k}" ${ans?"disabled":""}><span class="l">${"abcd"[k]})</span><span>${esc(o)}</span></button>`).join("")}</div>`;
+  }else{
+    body=ans?`<p class="muted" style="font-family:var(--body)">Your answer: <b>${esc(ans.pick||"(blank)")}</b></p>`
+      :`<form class="gapform" id="gapform"><input id="gapin" autocomplete="off" placeholder="Type the missing word" aria-label="Missing word"><button class="btn primary">Check</button></form>`;
+  }
+  const qtext=q.type==="gap"?esc(q.q).replace("____",'<span class="gapline">&nbsp;</span>'):esc(q.q);
+  return `<div class="sheet"><div class="qhead"><div class="eyebrow">${E.ch?"Chapter "+E.ch+" · "+esc(chOf(E.ch).title):"Mixed mock test"}</div><span class="mono muted">${E.i+1} / ${E.items.length}</span></div>
+   <div class="progress"><i style="width:${(E.i+(ans?1:0))/E.items.length*100}%"></i></div>
+   <span class="qtype">${labels[q.type]}</span>${!E.ch?` <span class="qtype">Ch. ${q.ch}</span>`:""}
+   <p class="qtext">${qtext}</p>${body}
+   ${ans?`<div class="feedback ${ans.ok?"ok":"no"}"><b>${ans.ok?"Correct.":"Not quite. The answer is "+esc(answerText(q))+"."}</b> ${esc(q.why)}</div>
+    <div class="actions"><button class="btn primary" data-next="1">${E.i+1<E.items.length?"Next question":"See my score"}</button></div>`:""}
+   <div class="actions" style="margin-top:${ans?"10px":"26px"}"><button class="linkbtn" data-endexam="1">Leave test</button></div></div>`;
+}
+function answerText(q){return q.type==="tf"?(q.a?"True":"False"):q.type==="mcq"?"abcd"[q.a]+") "+q.o[q.a]:q.acc[0]}
+
+function viewAdmin(){
+  if(!S.isOwner) return viewHome();
+  const statusOf=c=>{
+    if(c.revoked) return ["revoked","Withdrawn",""];
+    const inv=invites[c.hash]; const cl=members.filter(m=>m.codeHash===c.hash);
+    const holder=inv&&inv.boundTo?members.find(m=>m.id===inv.boundTo):earliest(cl);
+    return holder?["active","In use",holder.name+(cl.length>1?` (+${cl.length-1} blocked attempt${cl.length>2?"s":""})`:"")]:["unused","Not used yet",""];
+  };
+  return `<div class="eyebrow">Owner only</div><h1 style="margin-top:6px">Access codes</h1>
+  <p class="lede">Create one code per student and send it to them privately. A code works once: the first person to use it gets an account tied to their sign-in, and the code stops working for anyone else. Only you can see this page and these codes.</p>
+  <div class="sheet section-gap"><h3>Create a code</h3>
+   <form class="admin-new" id="newcode"><input id="nc-label" placeholder="Student's name (for your list)" aria-label="Student's name"><button class="btn primary">Create code</button></form>
+   ${S.newCode?`<div class="newcode"><span class="c" id="nc-val">${S.newCode}</span><button class="btn small" data-copy="${S.newCode}">Copy</button><span class="muted" style="font-size:13px">Send this to the student. It's also saved in the list below.</span></div>`:""}
+   ${S.adminMsg?`<div class="msg info" style="margin-top:12px">${esc(S.adminMsg)}</div>`:""}
+  </div>
+  <div class="sheet section-gap"><h3>Your codes <span class="muted mono" style="font-weight:400;font-size:13px">(${ownerCodes.length})</span></h3>
+   ${ownerCodes.length?`<div class="tablewrap"><table><thead><tr><th>For</th><th>Code</th><th>Status</th><th>Account</th><th></th></tr></thead><tbody>
+    ${ownerCodes.map(c=>{const [k,l,who]=statusOf(c);return `<tr><td>${esc(c.label)}</td><td class="code">${c.code}</td><td><span class="pill ${k}">${l}</span></td><td>${esc(who)}</td><td style="text-align:right;white-space:nowrap">${c.revoked?"":`<button class="btn small" data-copy="${c.code}">Copy</button> <button class="btn small" data-revoke="${c.hash}">Withdraw</button>`}</td></tr>`}).join("")}
+   </tbody></table></div>`:`<p class="muted">No codes yet. Create the first one above, for example for yourself to test the sign-up.</p>`}
+  </div>`;
+}
+
+function render(){
+  renderBar();
+  let html;
+  if(!unlocked()) html=viewGate();
+  else html={home:viewHome,book:viewBook,summaries:viewSummaries,exam:viewExam,admin:viewAdmin}[S.view]();
+  $("#main").innerHTML=html;
+  renderTutor();
+}
+
+/* ---------------- Tutor ---------------- */
+function md(t){
+  const lines=esc(t).replace(/\*\*(.+?)\*\*/g,"<b>$1</b>").replace(/(^|[^*])\*([^*\n]+)\*/g,"$1<i>$2</i>").split("\n");
+  let out="",list=false;
+  for(const l of lines){
+    const m=l.match(/^\s*(?:[-•*]|\d+\.)\s+(.*)/);
+    if(m){if(!list){out+="<ul>";list=true}out+=`<li>${m[1]}</li>`;continue}
+    if(list){out+="</ul>";list=false}
+    if(l.trim()) out+=`<p>${l.replace(/^#+\s*/,"")}</p>`;
+  }
+  return out+(list?"</ul>":"");
+}
+function courseNotes(){
+  const strip=h=>h.replace(/<[^>]+>/g,"");
+  return CH.map(c=>`CHAPTER ${c.n}: ${c.title} (book pp. ${c.pages})\nSections: ${c.outline.join("; ")}\nSummary: ${strip(c.summary.join(" "))}\nKey terms: ${c.terms.map(t=>t[0]+" = "+t[1]).join("; ")}`).join("\n\n");
+}
+function renderTutor(){
+  const el=$("#tutor");
+  if(!unlocked()){el.innerHTML="";return}
+  if(!S.tutorOpen){el.innerHTML=`<button class="fab" data-tutor="open"><i></i>Ask the tutor</button>`;return}
+  const sugg=["Explain the agency problem","Difference between an MNE and a TNC","Quiz me on Chapter "+S.ch,"What is the BCG matrix?"];
+  const msgs=S.chat.length?S.chat.map(m=>`<div class="bubble ${m.role}">${m.role==="user"?esc(m.content):md(m.content||"Thinking…")}</div>`).join("")
+    :`<div class="bubble assistant"><p>Hi! I'm your PMB tutor. Ask me about any chapter of <i>Business in Context</i>, ask for an explanation in simpler words, or say "quiz me" to practise.</p></div>`;
+  const prev=$("#t-in")?.value||"";
+  el.innerHTML=`<aside class="drawer" role="dialog" aria-label="AI tutor"><header><h3>PMB tutor</h3><button class="btn small" data-tutor="clear" ${S.chat.length?"":"disabled"}>New chat</button><button class="btn small" data-tutor="close" aria-label="Close tutor">Close</button></header>
+   <div class="chat" id="chat">${msgs}${!sample&&S.sampleChecked?`<div class="bubble sys">The tutor isn't available in this view. Open the page signed in to Claude and allow it to use Claude when asked.</div>`:""}</div>
+   ${S.chat.length?"":`<div class="suggest">${sugg.map(s=>`<button data-ask="${esc(s)}">${esc(s)}</button>`).join("")}</div>`}
+   <form class="composer" id="tform"><textarea id="t-in" placeholder="Ask about the course…" aria-label="Your question"></textarea><button class="btn primary" ${S.busy?"disabled":""}>Send</button></form></aside>`;
+  const ti=$("#t-in"); if(ti){ti.value=prev}
+  const ch=$("#chat"); if(ch) ch.scrollTop=ch.scrollHeight;
+}
+async function ask(text){
+  text=text.trim(); if(!text||S.busy) return;
+  S.tutorOpen=true;
+  if(!sample){S.chat.push({role:"user",content:text},{role:"assistant",content:"I can't answer in this view. Open the page signed in to Claude and allow it to use Claude when asked."});renderTutor();return}
+  S.chat.push({role:"user",content:text},{role:"assistant",content:""});S.busy=true;renderTutor();
+  const intro=`You are the AI tutor on a study website for the university course PMB, which uses the textbook "${BOOK.title}" (${BOOK.edition}, ${BOOK.authors}). Help the student prepare for the exam.
+Rules: Base your answers on the course notes below and on standard business and management knowledge consistent with the book. If something isn't in the notes, say so briefly and still help with general knowledge. Never claim to quote the book word for word. Be clear and concise (short paragraphs or bullet points, under about 250 words unless asked for more). Use plain language and a real-world example when it helps. If the student asks to be quizzed, ask one question at a time (true/false, multiple choice a-d, or fill the gap), wait for their answer, then give feedback. The student is currently looking at Chapter ${S.ch}.
+
+COURSE NOTES
+${courseNotes()}
+
+Student's first message: `;
+  const hist=S.chat.slice(0,-1).slice(-12);
+  const msgs=hist.map((m,i)=>({role:m.role,content:i===0?intro+m.content:m.content}));
+  if(msgs[0]&&msgs[0].role!=="user") msgs.shift();
+  const last=S.chat[S.chat.length-1];
+  try{
+    const r=await sample(msgs,{cache:false,onText:u=>{last.content=u.text;const b=document.querySelectorAll(".bubble.assistant");if(b.length)b[b.length-1].innerHTML=md(u.text);const c=$("#chat");if(c)c.scrollTop=c.scrollHeight}});
+    last.content=r.text||last.content;
+  }catch(e){
+    last.content=e&&e.code==="not_granted"?"The tutor needs your permission to use Claude. Allow it when asked, then try again."
+      :e&&e.code==="rate_limited"?"Too many questions in a short time. Wait a minute, then ask again."
+      :e&&e.code==="prompt_too_large"?"This conversation is too long. Start a new chat and ask again."
+      :"Something went wrong getting an answer. Try again.";
+  }finally{S.busy=false;renderTutor()}
+}
+
+/* ---------------- Events ---------------- */
+document.addEventListener("click",e=>{
+  const t=e.target.closest("button"); if(!t) return;
+  const d=t.dataset;
+  if(d.go){S.view=d.go;if(d.go!=="exam")S.exam=null;S.newCode=d.go==="admin"?S.newCode:null;render();window.scrollTo(0,0);return}
+  if(d.ch){S.ch=+d.ch;if(S.view!=="book"&&S.view!=="summaries")S.view="summaries";render();window.scrollTo(0,0);return}
+  if(d.exam!==undefined){const ch=+d.exam;let pool=Q.filter(q=>!ch||q.ch===ch);pool=shuffle(pool).slice(0,ch?pool.length:15);S.exam={ch,items:pool,i:0,log:[],done:false};S.view="exam";if(ch)S.ch=ch;render();window.scrollTo(0,0);return}
+  if(d.endexam){S.exam=null;render();return}
+  if(d.pick!==undefined&&S.exam){const q=S.exam.items[S.exam.i];if(S.exam.log[S.exam.i])return;const pick=q.type==="tf"?d.pick==="true":+d.pick;S.exam.log[S.exam.i]={pick,ok:pick===q.a};render();return}
+  if(d.next&&S.exam){if(S.exam.i+1<S.exam.items.length){S.exam.i++}else{S.exam.done=true;const pct=Math.round(S.exam.log.filter(x=>x.ok).length/S.exam.items.length*100);saveBest(S.exam.ch?"ch"+S.exam.ch:"all",pct)}render();window.scrollTo(0,0);return}
+  if(d.tutor==="open"){S.tutorOpen=true;renderTutor();setTimeout(()=>$("#t-in")?.focus(),0);return}
+  if(d.tutor==="close"){S.tutorOpen=false;renderTutor();return}
+  if(d.tutor==="clear"){S.chat=[];renderTutor();return}
+  if(d.ask){ask(d.ask);return}
+  if(d.copy){const v=d.copy;const done=()=>{t.textContent="Copied"};try{navigator.clipboard.writeText(v).then(done,()=>selectText(t))}catch(_){selectText(t)}return}
+  if(d.revoke){if(t.dataset.confirm){revokeCode(d.revoke)}else{t.dataset.confirm="1";t.textContent="Confirm withdraw"}return}
+});
+function selectText(btn){const el=btn.parentElement.querySelector(".c,.code");if(!el)return;const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r)}
+document.addEventListener("change",e=>{if(e.target.id==="chsel"){S.ch=+e.target.value;render()}});
+document.addEventListener("submit",e=>{
+  e.preventDefault();
+  if(e.target.id==="gateform"){redeem($("#g-code").value,$("#g-name").value)}
+  if(e.target.id==="newcode"){createCode($("#nc-label").value)}
+  if(e.target.id==="tform"){const v=$("#t-in").value;$("#t-in").value="";ask(v)}
+  if(e.target.id==="gapform"&&S.exam){const q=S.exam.items[S.exam.i];const v=$("#gapin").value.trim();const n=v.toLowerCase().replace(/[^a-z0-9 ]/g,"").replace(/\s+/g," ").trim();S.exam.log[S.exam.i]={pick:v,ok:q.acc.includes(n)};render()}
+});
+document.addEventListener("keydown",e=>{if(e.target.id==="t-in"&&e.key==="Enter"&&!e.shiftKey){e.preventDefault();$("#tform").requestSubmit()}});
+
+/* ---------------- Boot ---------------- */
+async function boot(){
+  render();
+  for(let i=0;i<30&&!(window.claude&&window.claude.use);i++) await new Promise(r=>setTimeout(r,100));
+  if(!(window.claude&&window.claude.use)){S.access="nocap";render();return}
+  claude.use("sample").then(s=>{sample=s;S.sampleChecked=true;renderTutor()},()=>{S.sampleChecked=true});
+  try{[db,user]=await Promise.all([claude.use("db"),claude.use("user")])}catch(e){}
+  if(!db||!user){S.access="nocap";render();return}
+  S.isOwner=await user.isOwner().catch(()=>false);
+  S.uid=await user.id().catch(()=>null);
+  if(!S.uid){S.access="nocap";render();return}
+  if(S.isOwner){S.access="owner";loadOwner();loadProgress();return}
+  try{const v=await verifyMember(S.uid);if(v.ok){S.access="member";S.member=v.member;loadProgress()}else{S.access="locked";S.lockReason=v.reason}}
+  catch(e){S.access="locked"}
+  render();
+}
+boot();
+</script>
